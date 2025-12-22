@@ -2,19 +2,36 @@ const { ethers } = require("hardhat");
 const fs = require('fs');
 
 async function main() {
-  console.log("🚀 Starting complete deployment to U2U Solaris Mainnet...");
-  console.log("=" .repeat(60));
+  console.log("🚀 Starting complete deployment...");
+  console.log("=".repeat(60));
 
   const deployments = {};
 
   try {
+    // Get network information
+    const network = await ethers.provider.getNetwork();
+    const networkName = network.name === 'unknown' ? 'sepolia' : network.name;
+    const chainId = Number(network.chainId);
+
+    console.log(`\n🌐 Network: ${networkName} (Chain ID: ${chainId})`);
+
+    // Determine explorer base URL
+    let explorerBase;
+    if (chainId === 11155111) {
+      explorerBase = "https://sepolia.etherscan.io/address";
+    } else if (chainId === 39) {
+      explorerBase = "https://u2uscan.xyz/address";
+    } else {
+      explorerBase = null;
+    }
+
     // Step 1: Deploy USDT Token
     console.log("\n📦 Step 1: Deploying MockUSDT Token...");
     const MockUSDT = await ethers.getContractFactory("MockUSDT");
     const mockUSDT = await MockUSDT.deploy();
     await mockUSDT.waitForDeployment();
     const usdtAddress = await mockUSDT.getAddress();
-    
+
     console.log("✅ MockUSDT deployed at:", usdtAddress);
     deployments.USDT = usdtAddress;
 
@@ -24,7 +41,7 @@ async function main() {
     const bounty = await Allin1Bounty.deploy(usdtAddress);
     await bounty.waitForDeployment();
     const bountyAddress = await bounty.getAddress();
-    
+
     console.log("✅ Allin1Bounty deployed at:", bountyAddress);
     deployments.Bounty = bountyAddress;
 
@@ -34,36 +51,37 @@ async function main() {
     const freelance = await FreelanceGigEscrow.deploy(usdtAddress);
     await freelance.waitForDeployment();
     const freelanceAddress = await freelance.getAddress();
-    
+
     console.log("✅ FreelanceGigEscrow deployed at:", freelanceAddress);
     deployments.Freelance = freelanceAddress;
 
     // Get deployer address
-    const deployer = await ethers.provider.getSigner().getAddress();
+    const [deployer] = await ethers.getSigners();
+    const deployerAddress = await deployer.getAddress();
 
     // Create comprehensive deployment summary
     const deploymentSummary = {
-      network: "u2uSolarisMainnet",
-      chainId: 39,
+      network: networkName,
+      chainId: chainId,
       deployedAt: new Date().toISOString(),
-      deployer: deployer,
+      deployer: deployerAddress,
       contracts: {
         MockUSDT: {
           address: usdtAddress,
-          explorer: `https://u2uscan.xyz/address/${usdtAddress}`,
+          explorer: explorerBase ? `${explorerBase}/${usdtAddress}` : `Chain ${chainId}: ${usdtAddress}`,
           name: await mockUSDT.name(),
           symbol: await mockUSDT.symbol(),
           decimals: (await mockUSDT.decimals()).toString()
         },
         Allin1Bounty: {
           address: bountyAddress,
-          explorer: `https://u2uscan.xyz/address/${bountyAddress}`,
+          explorer: explorerBase ? `${explorerBase}/${bountyAddress}` : `Chain ${chainId}: ${bountyAddress}`,
           owner: await bounty.owner(),
           usdtToken: usdtAddress
         },
         FreelanceGigEscrow: {
           address: freelanceAddress,
-          explorer: `https://u2uscan.xyz/address/${freelanceAddress}`,
+          explorer: explorerBase ? `${explorerBase}/${freelanceAddress}` : `Chain ${chainId}: ${freelanceAddress}`,
           owner: await freelance.owner(),
           mockUSDT: usdtAddress,
           platformFee: (await freelance.platformFeePercent()).toString(),
@@ -72,42 +90,47 @@ async function main() {
       }
     };
 
+    // Create deployments directory if it doesn't exist
+    if (!fs.existsSync('./deployments')) {
+      fs.mkdirSync('./deployments', { recursive: true });
+    }
+
     // Save deployment summary
     fs.writeFileSync(
-      './deployments/complete-deployment.json', 
+      './deployments/complete-deployment.json',
       JSON.stringify(deploymentSummary, null, 2)
     );
 
     // Create individual deployment files
     fs.writeFileSync(
-      './deployments/USDT-deployment.json', 
+      './deployments/USDT-deployment.json',
       JSON.stringify(deploymentSummary.contracts.MockUSDT, null, 2)
     );
 
     fs.writeFileSync(
-      './deployments/Bounty-deployment.json', 
+      './deployments/Bounty-deployment.json',
       JSON.stringify(deploymentSummary.contracts.Allin1Bounty, null, 2)
     );
 
     fs.writeFileSync(
-      './deployments/Freelance-deployment.json', 
+      './deployments/Freelance-deployment.json',
       JSON.stringify(deploymentSummary.contracts.FreelanceGigEscrow, null, 2)
     );
 
     // Display final summary
-    console.log("\n" + "=" .repeat(60));
+    console.log("\n" + "=".repeat(60));
     console.log("🎉 DEPLOYMENT COMPLETED SUCCESSFULLY!");
-    console.log("=" .repeat(60));
+    console.log("=".repeat(60));
     console.log("\n📋 Contract Addresses:");
     console.log("   MockUSDT:     ", usdtAddress);
     console.log("   Allin1Bounty: ", bountyAddress);
     console.log("   Freelance:    ", freelanceAddress);
-    
+
     console.log("\n🔗 Explorer Links:");
     console.log("   USDT:     https://u2uscan.xyz/address/" + usdtAddress);
     console.log("   Bounty:   https://u2uscan.xyz/address/" + bountyAddress);
     console.log("   Freelance: https://u2uscan.xyz/address/" + freelanceAddress);
-    
+
     console.log("\n💾 Deployment files saved:");
     console.log("   ./deployments/complete-deployment.json");
     console.log("   ./deployments/USDT-deployment.json");

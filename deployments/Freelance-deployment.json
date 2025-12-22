@@ -1,0 +1,8 @@
+{
+  "address": "0x0ac0e1cB253D436Cc9156e28e7E1F0c9B169006F",
+  "explorer": "https://sepolia.etherscan.io/address/0x0ac0e1cB253D436Cc9156e28e7E1F0c9B169006F",
+  "owner": "0x1331f394e66Ab8E6e6e1176b39e84fd43e97B181",
+  "mockUSDT": "0xDD796A174437fABAaDB18b0a4Fee956dA1565a44",
+  "platformFee": "250",
+  "stakingGracePeriod": "86400"
+}

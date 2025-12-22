@@ -16,6 +16,10 @@
     "deploy:bounty": "hardhat run scripts/deploy-Bounty.js --network u2uSolarisMainnet",
     "deploy:freelance": "hardhat run scripts/deploy-Freelance.js --network u2uSolarisMainnet",
     "deploy:all": "hardhat run scripts/deploy-all.js --network u2uSolarisMainnet",
+    "deploy:usdt:sepolia": "hardhat run scripts/deploy-USDT.js --network sepolia",
+    "deploy:bounty:sepolia": "hardhat run scripts/deploy-Bounty.js --network sepolia",
+    "deploy:freelance:sepolia": "hardhat run scripts/deploy-Freelance.js --network sepolia",
+    "deploy:all:sepolia": "hardhat run scripts/deploy-all.js --network sepolia",
     "verify:usdt": "hardhat verify --network u2uSolarisMainnet",
     "verify:bounty": "hardhat verify --network u2uSolarisMainnet",
     "verify:freelance": "hardhat verify --network u2uSolarisMainnet"

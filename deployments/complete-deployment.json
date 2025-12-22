@@ -1,0 +1,29 @@
+{
+  "network": "sepolia",
+  "chainId": 11155111,
+  "deployedAt": "2025-12-22T21:03:50.250Z",
+  "deployer": "0x1331f394e66Ab8E6e6e1176b39e84fd43e97B181",
+  "contracts": {
+    "MockUSDT": {
+      "address": "0xDD796A174437fABAaDB18b0a4Fee956dA1565a44",
+      "explorer": "https://sepolia.etherscan.io/address/0xDD796A174437fABAaDB18b0a4Fee956dA1565a44",
+      "name": "Mock USDT",
+      "symbol": "USDT",
+      "decimals": "6"
+    },
+    "Allin1Bounty": {
+      "address": "0x6D23D84289ff9069B8508536F787C6476EE851f6",
+      "explorer": "https://sepolia.etherscan.io/address/0x6D23D84289ff9069B8508536F787C6476EE851f6",
+      "owner": "0x1331f394e66Ab8E6e6e1176b39e84fd43e97B181",
+      "usdtToken": "0xDD796A174437fABAaDB18b0a4Fee956dA1565a44"
+    },
+    "FreelanceGigEscrow": {
+      "address": "0x0ac0e1cB253D436Cc9156e28e7E1F0c9B169006F",
+      "explorer": "https://sepolia.etherscan.io/address/0x0ac0e1cB253D436Cc9156e28e7E1F0c9B169006F",
+      "owner": "0x1331f394e66Ab8E6e6e1176b39e84fd43e97B181",
+      "mockUSDT": "0xDD796A174437fABAaDB18b0a4Fee956dA1565a44",
+      "platformFee": "250",
+      "stakingGracePeriod": "86400"
+    }
+  }
+}
