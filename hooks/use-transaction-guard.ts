@@ -3,7 +3,7 @@
 import { useAccount } from "wagmi"
 import { toast } from "sonner"
 
-const U2U_SOLARIS_MAINNET_ID = 39
+const REQUIRED_CHAIN_ID = 11155111
 
 export function useTransactionGuard() {
   const { isConnected, chainId } = useAccount()
@@ -14,9 +14,9 @@ export function useTransactionGuard() {
       return false
     }
 
-    if (chainId !== U2U_SOLARIS_MAINNET_ID) {
+    if (chainId !== REQUIRED_CHAIN_ID) {
       toast.error("Wrong Network", {
-        description: "Please switch to U2U Solaris Mainnet to continue with this transaction."
+        description: "Please switch to Ethereum Sepolia to continue with this transaction."
       })
       return false
     }
@@ -29,8 +29,8 @@ export function useTransactionGuard() {
       return "Wallet not connected"
     }
     
-    if (chainId !== U2U_SOLARIS_MAINNET_ID) {
-      return `Wrong network. Please switch to U2U Solaris Mainnet (Chain ID: ${U2U_SOLARIS_MAINNET_ID}). Current chain: ${chainId}`
+    if (chainId !== REQUIRED_CHAIN_ID) {
+      return `Wrong network. Please switch to Ethereum Sepolia (Chain ID: ${REQUIRED_CHAIN_ID}). Current chain: ${chainId}`
     }
     
     return ""
@@ -39,7 +39,7 @@ export function useTransactionGuard() {
   return {
     checkChainBeforeTransaction,
     getChainErrorMessage,
-    isOnCorrectChain: isConnected && chainId === U2U_SOLARIS_MAINNET_ID,
+    isOnCorrectChain: isConnected && chainId === REQUIRED_CHAIN_ID,
     isConnected,
     chainId
   }

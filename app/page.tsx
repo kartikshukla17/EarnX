@@ -1,35 +1,14 @@
 "use client"
 
 import Footer from "@/components/Footer";
-import HowItWorks from "@/components/Howitworks";
 import { Features } from "@/components/ui/Features";
 import { FloatingNav } from "@/components/ui/floating-navbar";
 import Hero from "@/components/ui/Hero";
+import { TrustedBy } from "@/components/ui/TrustedBy";
 import Lenis from "lenis";
-import { Home as IconHome, User as IconUser, MessageSquare as IconMessage, ChevronDown, Play } from "lucide-react";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 
 export default function Home() {
-
-  const navItems = [
-    {
-      name: "Home",
-      link: "/",
-      icon: <IconHome className="h-4 w-4 text-neutral-500 dark:text-white" />,
-    },
-    {
-      name: "About",
-      link: "/about",
-      icon: <IconUser className="h-4 w-4 text-neutral-500 dark:text-white" />,
-    },
-    {
-      name: "Contact",
-      link: "/contact",
-      icon: (
-        <IconMessage className="h-4 w-4 text-neutral-500 dark:text-white" />
-      ),
-    },
-  ];
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
@@ -52,20 +31,24 @@ export default function Home() {
     }
   }, [])
 
-
-  const currentYear = new Date().getFullYear();
-
   return (
-    <div className="min-h-screen  bg-black text-white overflow-x-hidden">
-
+    <div className="min-h-screen bg-black text-white overflow-x-hidden">
+      {/* Navigation Bar */}
       <div className="absolute top-0 left-0 right-0 z-10 py-4">
-        <FloatingNav navItems={navItems} />
+        <FloatingNav />
       </div>
-      <Hero/>
-      <Features/>
-      <HowItWorks/>
-      <Footer/>
 
+      {/* Hero Section */}
+      <Hero />
+
+      {/* Feature Highlights */}
+      <Features />
+
+      {/* Trusted By Section */}
+      <TrustedBy />
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }

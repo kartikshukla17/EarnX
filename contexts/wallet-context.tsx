@@ -31,21 +31,21 @@ export function WalletProvider({ children }: { children: React.ReactNode }) {
   const [shouldRedirectToDashboard, setShouldRedirectToDashboard] = useState(false)
   const [isAutoSwitching, setIsAutoSwitching] = useState(false)
 
-  // U2U Solaris Mainnet ID
-  const U2U_SOLARIS_MAINNET_ID = 39;
+  // Ethereum Sepolia Chain ID
+  const REQUIRED_CHAIN_ID = 11155111;
 
-  // Enforce U2U Solaris Mainnet - switch immediately when connected to wrong network
+  // Enforce Ethereum Sepolia - switch immediately when connected to wrong network
   useEffect(() => {
-    if (isConnected && chainId && chainId !== U2U_SOLARIS_MAINNET_ID && !isAutoSwitching) {
-      console.log("🚨 ENFORCING U2U CHAIN: Switching to U2U Solaris Mainnet. Current chain:", chainId)
+    if (isConnected && chainId && chainId !== REQUIRED_CHAIN_ID && !isAutoSwitching) {
+      console.log("🚨 ENFORCING SEPOLIA CHAIN: Switching to Ethereum Sepolia. Current chain:", chainId)
       setIsAutoSwitching(true)
       
-      const enforceU2UChain = async () => {
+      const enforceSepoliaChain = async () => {
         try {
-          await switchChain({ chainId: U2U_SOLARIS_MAINNET_ID })
-          console.log("✅ Successfully enforced U2U Solaris Mainnet")
+          await switchChain({ chainId: REQUIRED_CHAIN_ID })
+          console.log("✅ Successfully enforced Ethereum Sepolia")
         } catch (error) {
-          console.error("❌ Failed to enforce U2U Solaris Mainnet:", error)
+          console.error("❌ Failed to enforce Ethereum Sepolia:", error)
           // If switching fails, we should disconnect the user to prevent wrong chain usage
           console.log("🔌 Disconnecting wallet due to wrong chain")
           wagmiDisconnect()
@@ -54,7 +54,7 @@ export function WalletProvider({ children }: { children: React.ReactNode }) {
         }
       }
       
-      enforceU2UChain()
+      enforceSepoliaChain()
     }
   }, [isConnected, chainId, switchChain, isAutoSwitching, wagmiDisconnect])
 
@@ -69,7 +69,7 @@ export function WalletProvider({ children }: { children: React.ReactNode }) {
   // Handle redirect to dashboard when wallet connects and is on correct chain
   useEffect(() => {
     if (isConnected && address && shouldRedirectToDashboard && 
-        chainId === U2U_SOLARIS_MAINNET_ID && !isAutoSwitching) {
+        chainId === REQUIRED_CHAIN_ID && !isAutoSwitching) {
       // Check if we're not already on a dashboard page
       const currentPath = window.location.pathname
       if (!currentPath.startsWith('/dashboard')) {
@@ -96,13 +96,13 @@ export function WalletProvider({ children }: { children: React.ReactNode }) {
       await wagmiConnect({ connector })
       console.log("Wallet context: wagmiConnect successful")
       
-      // Immediately enforce U2U chain after connection
-      console.log("🔒 Enforcing U2U Solaris Mainnet after connection...")
+      // Immediately enforce Sepolia chain after connection
+      console.log("🔒 Enforcing Ethereum Sepolia after connection...")
       try {
-        await switchChain({ chainId: U2U_SOLARIS_MAINNET_ID })
-        console.log("✅ Successfully switched to U2U Solaris Mainnet after connection")
+        await switchChain({ chainId: REQUIRED_CHAIN_ID })
+        console.log("✅ Successfully switched to Ethereum Sepolia after connection")
       } catch (switchError) {
-        console.error("❌ Failed to switch to U2U after connection:", switchError)
+        console.error("❌ Failed to switch to Sepolia after connection:", switchError)
         // Don't throw here, let the useEffect handle it
       }
       

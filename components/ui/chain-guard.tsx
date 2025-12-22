@@ -7,7 +7,7 @@ import { AlertTriangle, RefreshCw, ExternalLink } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 
-const U2U_SOLARIS_MAINNET_ID = 39
+const REQUIRED_CHAIN_ID = 11155111
 
 interface ChainGuardProps {
   children: React.ReactNode
@@ -21,7 +21,7 @@ export function ChainGuard({ children }: ChainGuardProps) {
 
   // Check if user is on the correct chain
   useEffect(() => {
-    if (isConnected && chainId && chainId !== U2U_SOLARIS_MAINNET_ID) {
+    if (isConnected && chainId && chainId !== REQUIRED_CHAIN_ID) {
       setShowGuard(true)
     } else {
       setShowGuard(false)
@@ -31,7 +31,7 @@ export function ChainGuard({ children }: ChainGuardProps) {
   const handleSwitchChain = async () => {
     setIsSwitching(true)
     try {
-      await switchChain({ chainId: U2U_SOLARIS_MAINNET_ID })
+      await switchChain({ chainId: REQUIRED_CHAIN_ID })
       setShowGuard(false)
     } catch (error) {
       console.error("Failed to switch chain:", error)
@@ -40,18 +40,18 @@ export function ChainGuard({ children }: ChainGuardProps) {
     }
   }
 
-  const addU2UToWallet = () => {
-    // U2U Solaris Mainnet network details
+  const addSepoliaToWallet = () => {
+    // Ethereum Sepolia network details
     const networkDetails = {
-      chainId: "0x27", // 39 in hex
-      chainName: "U2U Solaris Mainnet",
+      chainId: "0xaa36a7", // 11155111 in hex
+      chainName: "Ethereum Sepolia",
       nativeCurrency: {
-        name: "U2U",
-        symbol: "U2U",
+        name: "Ether",
+        symbol: "ETH",
         decimals: 18,
       },
-      rpcUrls: ["https://rpc-mainnet.u2u.xyz"],
-      blockExplorerUrls: ["https://u2uscan.xyz"],
+      rpcUrls: ["https://rpc.sepolia.org"],
+      blockExplorerUrls: ["https://sepolia.etherscan.io"],
     }
 
     // Try to add the network to the wallet
@@ -94,14 +94,14 @@ export function ChainGuard({ children }: ChainGuardProps) {
                 Wrong Network Detected
               </CardTitle>
               <CardDescription className="text-gray-300">
-                This application only works on U2U Solaris Mainnet
+                This application only works on Ethereum Sepolia
               </CardDescription>
             </CardHeader>
             
             <CardContent className="space-y-4">
               <div className="text-center text-sm text-gray-400">
                 <p>Current Network: <span className="text-red-400">Chain ID {chainId}</span></p>
-                <p>Required Network: <span className="text-green-400">U2U Solaris Mainnet (Chain ID 39)</span></p>
+                <p>Required Network: <span className="text-green-400">Ethereum Sepolia (Chain ID 11155111)</span></p>
               </div>
 
               <div className="space-y-3">
@@ -118,24 +118,24 @@ export function ChainGuard({ children }: ChainGuardProps) {
                   ) : (
                     <>
                       <RefreshCw className="w-4 h-4 mr-2" />
-                      Switch to U2U Solaris Mainnet
+                      Switch to Ethereum Sepolia
                     </>
                   )}
                 </Button>
 
                 <Button
-                  onClick={addU2UToWallet}
+                  onClick={addSepoliaToWallet}
                   variant="outline"
                   className="w-full border-gray-600 text-gray-300 hover:bg-gray-800"
                 >
                   <ExternalLink className="w-4 h-4 mr-2" />
-                  Add U2U Network to Wallet
+                  Add Sepolia Network to Wallet
                 </Button>
               </div>
 
               <div className="text-xs text-gray-500 text-center">
-                <p>If you don't have U2U Solaris Mainnet in your wallet,</p>
-                <p>click "Add U2U Network" to add it automatically.</p>
+                <p>If you don't have Ethereum Sepolia in your wallet,</p>
+                <p>click "Add Sepolia Network" to add it automatically.</p>
               </div>
             </CardContent>
           </Card>

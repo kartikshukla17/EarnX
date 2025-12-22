@@ -1,6 +1,5 @@
 "use client"
 import { UserButton } from "@civic/auth/react"
-import { prisma } from "@/db"
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "motion/react"
 import { Wallet, LogOut, Copy, Check, User, Shield, CloudCog } from "lucide-react"
@@ -36,13 +35,11 @@ export const WalletConnection = () => {
     setIsLoading(true)
 
     try {
-      const userExist = await prisma.user.findUnique({
-        where: {
-          walletAddress: address,
-        },
+      const response = await axios.post("/api/user/check", {
+        walletAddress: address,
       })
 
-      if (userExist) {
+      if (response.data.exists && response.data.user) {
         setUserExists(true)
         setCurrentStep("complete")
         setTimeout(() => {
@@ -54,6 +51,9 @@ export const WalletConnection = () => {
       }
     } catch (error) {
       console.error("Database operation failed:", error)
+      // On error, assume user doesn't exist and proceed to auth
+      setUserExists(false)
+      setCurrentStep("civic-auth")
     } finally {
       setIsLoading(false)
     }
@@ -66,24 +66,39 @@ export const WalletConnection = () => {
     setIsLoading(true)
 
     try {
-
       const res = await axios.post("/api/save", {
         userId: user.id,
         walletAddress: address,
         userName: user.name,
       })
 
-      console.log(res)
+      if (res.data.success) {
+        setUserExists(true)
+        setCurrentStep("complete")
 
-      setUserExists(true)
-      setCurrentStep("complete")
-
-      setTimeout(() => {
-        setShowAuthFlow(false)
-        router.push(`/dashboard`)
-      }, 2000)
-    } catch (error) {
+        setTimeout(() => {
+          setShowAuthFlow(false)
+          router.push(`/dashboard`)
+        }, 2000)
+      } else {
+        throw new Error(res.data.error || "Failed to save user")
+      }
+    } catch (error: any) {
       console.error("Failed to save user to database:", error)
+      // Show error to user and allow retry
+      if (error.response?.status === 409) {
+        // User already exists, treat as success
+        setUserExists(true)
+        setCurrentStep("complete")
+        setTimeout(() => {
+          setShowAuthFlow(false)
+          router.push(`/dashboard`)
+        }, 2000)
+      } else {
+        // Other errors - go back to civic auth to retry
+        setCurrentStep("civic-auth")
+        alert("Failed to save user. Please try again.")
+      }
     } finally {
       setIsLoading(false)
     }

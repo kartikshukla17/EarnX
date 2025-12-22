@@ -16,8 +16,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Fork Work",
-  description: "The only cut taken? Your gas fees.",
+  title: "EarnX - NASDAQ for AI Apps",
+  description: "Decentralized AI app ecosystem enabling discovery, deployment, tokenization, trading, and monetization of autonomous AI applications built on blockchain technology.",
 };
 
 export default function RootLayout({

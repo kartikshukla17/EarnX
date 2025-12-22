@@ -4,21 +4,14 @@ import React, { useState, useEffect } from "react"
 import { motion, AnimatePresence, useScroll } from "motion/react"
 import { useRouter, usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
-import { Poppins } from "next/font/google"
-import { Sparkles } from "lucide-react"
+import { FileText, BookOpen, Twitter, MessageCircle, ExternalLink, Search } from "lucide-react"
 import { UserButton, useUser } from "@civic/auth/react"
-import { Button } from "@/components/ui/button"
-
-const poppins = Poppins({
-  weight: ["400", "500", "600", "700"],
-  subsets: ["latin"],
-})
 
 export const FloatingNav = ({
   navItems,
   className,
 }: {
-  navItems: {
+  navItems?: {
     name: string
     link: string
     icon?: any
@@ -27,7 +20,6 @@ export const FloatingNav = ({
 }) => {
   const { scrollYProgress } = useScroll()
   const [isVisible, setIsVisible] = useState(false)
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
   const router = useRouter()
   const pathname = usePathname()
   const { user } = useUser()
@@ -38,23 +30,43 @@ export const FloatingNav = ({
 
   // Redirect to dashboard if user is authenticated
   React.useEffect(() => {
-    if (user) {
+    if (user && pathname === '/') {
       router.push('/dashboard')
     }
-  }, [user, router])
+  }, [user, router, pathname])
 
-  const getScale = (index: number) => {
-    if (hoveredIndex === null) return 1
+  const defaultNavItems = [
+    {
+      name: "Docs",
+      link: "/docs",
+      icon: <FileText className="h-4 w-4" />,
+    },
+    {
+      name: "Blog",
+      link: "/blog",
+      icon: <BookOpen className="h-4 w-4" />,
+    },
+    {
+      name: "Explorer",
+      link: "/explorer",
+      icon: <Search className="h-4 w-4" />,
+    },
+  ]
 
-    if (index === hoveredIndex) {
-      return 1.2 // Scale up the hovered item
-    }
+  const socialLinks = [
+    {
+      name: "Twitter",
+      link: "https://twitter.com/earnx",
+      icon: <Twitter className="h-4 w-4" />,
+    },
+    {
+      name: "Discord",
+      link: "https://discord.gg/earnx",
+      icon: <MessageCircle className="h-4 w-4" />,
+    },
+  ]
 
-    return 1 // Keep other items at normal size
-  }
-
-  // Check if we're on the dashboard
-  const isDashboard = pathname === '/dashboard'
+  const itemsToShow = navItems || defaultNavItems
 
   return (
     <>
@@ -69,60 +81,68 @@ export const FloatingNav = ({
             opacity: 1,
           }}
           transition={{
-            duration: 0.8,
+            duration: 0.5,
             type: "spring",
-            stiffness: 50,
-            damping: 15,
+            stiffness: 100,
+            damping: 20,
           }}
           className={cn(
-            "flex max-w-4xl mx-auto border border-gray-800 dark:border-white/[0.2] rounded-3xl bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#8c2743] via-black to-black shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] anim z-[5000] px-4 py-2 items-center justify-between space-x-2 relative overflow-hidden",
+            "flex max-w-6xl mx-auto border border-gray-800 rounded-2xl bg-black/80 backdrop-blur-md shadow-lg z-[5000] px-6 py-3 items-center justify-between",
             className,
           )}
         >
-          {/* Animated gradient background */}
-          <motion.div
-            className="absolute inset-0 z-[-1] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#8c2743] via-black to-black rounded-3xl"
-            animate={{
-              scale: [1, 1.03, 0.97, 1.02, 1],
-              y: [0, -2, 3, -2, 0],
-              rotate: [0, 0.5, -0.5, 0.3, 0],
-              opacity: [0.7, 0.8, 0.75, 0.8, 0.7],
-            }}
-            transition={{
-              duration: 8,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "easeInOut",
-              times: [0, 0.25, 0.5, 0.75, 1],
-            }}
-          />
-          
+          {/* Logo */}
           <div className="flex items-center space-x-2">
-            <img src="/logo1.png" alt="Fork Work" width={32} height={32} />
-            <span className={cn("text-xl font-semibold text-white", poppins.className)}>Fork Work</span>
+            <span className="text-xl font-bold text-white">EarnX</span>
           </div>
 
+          {/* Navigation Items */}
           <div className="flex items-center space-x-6">
-            {navItems.map((navItem: any, idx: number) => (
+            {itemsToShow.map((navItem: any, idx: number) => (
               <motion.a
                 key={`link=${idx}`}
                 href={navItem.link}
-                className={cn(
-                  "relative text-gray-400 items-center flex space-x-1 hover:text-white transition-colors",
-                  poppins.className,
-                )}
-                onMouseEnter={() => setHoveredIndex(idx)}
-                onMouseLeave={() => setHoveredIndex(null)}
-                whileHover={{ scale: getScale(idx) }}
-                transition={{ duration: 0.2 }}
+                className="relative text-gray-400 items-center flex space-x-1 hover:text-white transition-colors text-sm font-medium"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
-                <span className="block sm:hidden">{navItem.icon}</span>
-                <span className="hidden sm:block text-sm">{navItem.name}</span>
+                <span className="hidden sm:inline-block">{navItem.icon}</span>
+                <span>{navItem.name}</span>
+              </motion.a>
+            ))}
+
+            {/* Social Links */}
+            {socialLinks.map((social, idx) => (
+              <motion.a
+                key={`social=${idx}`}
+                href={social.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition-colors"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                {social.icon}
               </motion.a>
             ))}
           </div>
 
-          <UserButton />
-
+          {/* User Button or Launch App */}
+          <div className="flex items-center space-x-4">
+            {user ? (
+              <UserButton />
+            ) : (
+              <motion.a
+                href="/dashboard"
+                className="px-4 py-2 bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold rounded-lg text-sm hover:from-purple-500 hover:to-blue-500 transition-all flex items-center gap-2"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Launch App
+                <ExternalLink className="w-4 h-4" />
+              </motion.a>
+            )}
+          </div>
         </motion.div>
       </AnimatePresence>
     </>

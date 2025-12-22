@@ -1,10 +1,10 @@
 import { NextResponse } from 'next/server';
 import { createPublicClient, http, getContract } from 'viem';
-import { mainnet } from 'viem/chains';
+import { sepolia } from 'viem/chains';
 import { BOUNTY_ABI, BOUNTY_CONTRACT_ADDRESS } from '@/lib/contracts';
 
 const publicClient = createPublicClient({
-  chain: mainnet,
+  chain: sepolia,
   transport: http(),
 });
 

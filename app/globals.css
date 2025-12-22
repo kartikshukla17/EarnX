@@ -138,6 +138,36 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-black text-white;
+  }
+}
+
+/* Custom gradient utilities for EarnX */
+@layer utilities {
+  .bg-gradient-purple-blue {
+    background: linear-gradient(135deg, #9333ea 0%, #3b82f6 100%);
+  }
+  
+  .bg-gradient-purple-blue-hover {
+    background: linear-gradient(135deg, #7c3aed 0%, #2563eb 100%);
+  }
+  
+  .bg-size-200 {
+    background-size: 200% 200%;
+  }
+  
+  .bg-pos-0 {
+    background-position: 0% 50%;
+  }
+  
+  .bg-pos-100 {
+    background-position: 100% 50%;
+  }
+  
+  .text-gradient-purple-blue {
+    background: linear-gradient(135deg, #9333ea 0%, #3b82f6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 }
