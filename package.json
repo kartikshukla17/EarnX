@@ -7,9 +7,12 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "prisma generate --schema=db/prisma/schema.prisma && next build",
     "start": "next start",
     "lint": "next lint",
+    "postinstall": "prisma generate --schema=db/prisma/schema.prisma",
+    "prisma:generate": "prisma generate --schema=db/prisma/schema.prisma",
+    "prisma:studio": "prisma studio --schema=db/prisma/schema.prisma",
     "compile": "hardhat compile",
     "test": "hardhat test",
     "deploy:usdt": "hardhat run scripts/deploy-USDT.js --network u2uSolarisMainnet",
