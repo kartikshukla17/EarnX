@@ -1,196 +1,233 @@
-# 🚀 EarnX – Web3 Freelance, Gigs & Bounties
+# EarnX
 
-> **A Web3-native home for freelancers in a $1.5T+ market.**
+A Web3-native freelance platform that connects freelancers with on-chain gigs, bounties, and projects. Built on Ethereum Sepolia testnet with smart contract escrow, programmable trust, and transparent reward systems.
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-earnx.vercel.app-blue?style=for-the-badge&logo=vercel)](https://earnx.vercel.app/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](LICENSE)
-[![Next.js](https://img.shields.io/badge/Next.js-15.3.4-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
-[![Solidity](https://img.shields.io/badge/Solidity-0.8.19-363636?style=for-the-badge&logo=solidity)](https://soliditylang.org/)
+## Overview
 
-![image](https://github.com/user-attachments/assets/63de5104-979f-46b4-aa6f-23b9efba61cd)
+EarnX revolutionizes the freelance economy by leveraging blockchain technology to create a transparent, secure, and efficient marketplace. The platform eliminates traditional middlemen, reduces fees, and ensures fair payment distribution through smart contracts.
 
+## Features
 
+### Bounty System
+- Competitive bounty competitions where multiple freelancers can submit work
+- USDT-based payments with secure escrow
+- Dynamic prize distribution based on quality
+- Category-based organization (Content, Development, Design, Research, Marketing)
+- Automated deadline enforcement with penalty systems
+- Winner selection and prize distribution
 
-EarnX is a Web3-native platform that connects freelancers with on-chain gigs, bounties, and projects in the **$1.5T+ global freelance economy**. Smart-contract escrow, programmable trust, and transparent rewards replace Web2 middlemen and opaque platforms, so more value flows directly between clients and talent.
+### Freelance Escrow
+- Smart contract escrow for secure payment holding
+- Freelancer staking mechanism to demonstrate commitment
+- Detailed proposal system with IPFS metadata storage
+- Automatic proposal expiration for time-sensitive projects
+- Work approval and payment release workflow
+- Minimal platform fee (2.5%)
 
-## ✨ Features
+### Security Features
+- Reentrancy protection using OpenZeppelin libraries
+- Ownership controls for platform management
+- Penalty distribution for cancelled projects
+- On-chain verification of all transactions
+- Secure wallet integration with multiple providers
 
-### 🎯 **Bounty System**
-Contract Address: 0x0caE75a45201304d6b45541BCeF12bd3ee787e28
-- **Competitive Bounties**: Post tasks and let multiple freelancers compete
-- **USDT Payments**: Secure payments using USDT stablecoin
-- **Dynamic Prize Distribution**: Flexible reward allocation based on quality
-- **Category-based Organization**: Content, Development, Design, Research, Marketing, and more
-- **Deadline Management**: Automated deadline enforcement with penalty systems
-
-### 💼 **Freelance Escrow**
-- **Smart Contract Escrow**: Secure payment holding until work completion
-- **Staking Mechanism**: Freelancers stake native tokens to demonstrate commitment
-- **Proposal System**: Detailed project proposals with evidence tracking
-- **Auto-expiration**: Automatic proposal expiration for time-sensitive projects
-- **Platform Fee**: Minimal 2.5% fee (only gas fees beyond this)
-
-### 🔐 **Security & Trust**
-- **Reentrancy Protection**: Secure smart contracts with OpenZeppelin
-- **Ownership Controls**: Admin functions for platform management
-- **Penalty Systems**: Fair penalty distribution for cancelled projects
-- **On-chain Verification**: All transactions and agreements recorded on blockchain
-
-### 🎨 **Modern UI/UX**
-- **Responsive Design**: Beautiful interface that works on all devices
-- **Smooth Animations**: Framer Motion powered interactions
-- **Dark Theme**: Eye-friendly dark mode interface
-- **Wallet Integration**: Seamless Web3 wallet connection
-- **Real-time Updates**: Live status updates and notifications
-
-## 🛠️ Technology Stack
+## Technology Stack
 
 ### Frontend
-- **Next.js 15** - React framework with App Router
+- **Next.js 16** - React framework with App Router
 - **TypeScript** - Type-safe development
 - **Tailwind CSS** - Utility-first styling
-- **Framer Motion** - Smooth animations and transitions
+- **Framer Motion** - Smooth animations
 - **Radix UI** - Accessible component primitives
 - **Wagmi** - React hooks for Ethereum
-- **Lucide React** - Beautiful icons
+- **Viem** - TypeScript Ethereum library
 
-### Backend & Database
-- **Prisma** - Type-safe database client
-- **PostgreSQL** - Reliable database storage
+### Backend
 - **Next.js API Routes** - Serverless API endpoints
+- **Prisma** - Type-safe database client
+- **PostgreSQL** - Database storage
+- **Pinata** - IPFS storage for metadata
 
 ### Blockchain
 - **Solidity 0.8.19** - Smart contract development
 - **OpenZeppelin** - Secure contract libraries
-- **USDT Integration** - Stablecoin payments
+- **Hardhat** - Development environment
 - **Ethereum Sepolia** - Testnet deployment
 
-### Development Tools
-- **ESLint** - Code quality and consistency
-- **Prettier** - Code formatting
-- **Turbopack** - Fast development builds
+## Network Configuration
 
-## 🌐 Blockchain Deployment Details
+- **Network**: Ethereum Sepolia Testnet
+- **Chain ID**: 11155111
+- **RPC URL**: https://rpc.sepolia.org
+- **Block Explorer**: https://sepolia.etherscan.io
+- **Native Currency**: ETH
+- **Payment Token**: USDT (Mock ERC20)
 
-### 🌐 Main Network
-
-- **Chain**: Ethereum Sepolia Testnet
-- **RPC URL**: [`https://rpc.sepolia.org`](https://rpc.sepolia.org)
-- **Chain ID**: `11155111`
-- **Currency**: ETH
-- **Explorer**: [https://sepolia.etherscan.io](https://sepolia.etherscan.io)
-- **Deployed**: December 22, 2025
-
-
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
-- Node.js 18+ 
+
+- Node.js 18 or higher
 - npm, yarn, pnpm, or bun
-- MetaMask or any Web3 wallet
-- USDT tokens for payments
+- MetaMask or compatible Web3 wallet
+- PostgreSQL database (for user data)
+- Sepolia ETH for gas fees
 
 ### Installation
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/Debanjannnn/ForkWrok.git
-   cd ForkWrok
+   git clone <repository-url>
+   cd EarnX
    ```
 
 2. **Install dependencies**
    ```bash
    npm install
-   # or
-   yarn install
-   # or
-   pnpm install
    ```
 
 3. **Set up environment variables**
-   ```bash
-   cp .env.example .env.local
-   ```
-   Add your configuration:
+   
+   Create a `.env.local` file in the root directory:
    ```env
-   DATABASE_URL="your-database-url"
-   NEXT_PUBLIC_CONTRACT_ADDRESS="your-contract-address"
-   NEXT_PUBLIC_USDT_ADDRESS="your-usdt-contract-address"
+   # Database
+   DATABASE_URL="postgresql://user:password@localhost:5432/earnx"
+   
+   # Frontend
+   NEXT_PUBLIC_CHAIN_ID=11155111
+   NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID="your-walletconnect-project-id"
+   NEXT_PUBLIC_APP_URL="http://localhost:3000"
+   
+   # API Keys
+   token="your-web3-career-api-token"
+   
+   # Pinata (for IPFS)
+   PINATA_API_KEY="your-pinata-api-key"
+   PINATA_SECRET_KEY="your-pinata-secret-key"
    ```
 
-4. **Run database migrations**
+4. **Set up the database**
    ```bash
-   npx prisma migrate dev
+   npx prisma generate --schema=db/prisma/schema.prisma
+   npx prisma migrate dev --schema=db/prisma/schema.prisma
    ```
 
 5. **Start the development server**
    ```bash
    npm run dev
-   # or
-   yarn dev
-   # or
-   pnpm dev
    ```
 
 6. **Open your browser**
    Navigate to [http://localhost:3000](http://localhost:3000)
 
-## 📖 How It Works
+## Smart Contracts
 
-### For Clients
-1. **Connect Wallet** - Link your Web3 wallet to the platform
-2. **Post Project** - Create a bounty or freelance gig with detailed requirements
-3. **Fund Escrow** - Deposit USDT to secure the payment
-4. **Review Proposals** - Evaluate freelancer submissions and select the best fit
-5. **Approve Work** - Review completed work and release payment
-
-### For Freelancers
-1. **Complete Onboarding** - Connect wallet and link professional profiles
-2. **Build Reputation** - Complete tasks to establish on-chain credibility
-3. **Browse Opportunities** - Find bounties and freelance gigs that match your skills
-4. **Submit Proposals** - Create detailed proposals with evidence and timelines
-5. **Deliver Quality Work** - Complete projects and receive secure payments
-
-## 🔧 Smart Contracts
-
-### Bounty Contract (`Bounty.sol`)
-- Contract Address: [0x69be51D117e4f917BbBB2b19d30b77eAC48F8b21](https://sepolia.etherscan.io/address/0x69be51D117e4f917BbBB2b19d30b77eAC48F8b21)
+### Bounty Contract
 - Manages competitive bounty competitions
 - Handles USDT payments and prize distribution
 - Implements deadline enforcement and penalty systems
 - Supports multiple categories and submission tracking
 
-### Freelance Contract (`Freelance.sol`)
-- Contract Address: [0x15c6425E64659D3bf9d1A7131E3b921953E1e62f](https://sepolia.etherscan.io/address/0x15c6425E64659D3bf9d1A7131E3b921953E1e62f)
+### Freelance Contract
 - Escrow system for freelance projects
 - Staking mechanism for freelancer commitment
 - Proposal management and selection process
 - Automated deadline handling and fund release
 
 ### USDT Token (Mock)
-- Token Address: [0x52708D2EbB14ADc9df57e02aCAbDC258945daeE2](https://sepolia.etherscan.io/address/0x52708D2EbB14ADc9df57e02aCAbDC258945daeE2)
-- ERC20 stablecoin used for all payments on the platform
-  
+- ERC20 stablecoin used for all payments
+- Deployed on Sepolia testnet for testing
 
-## 🌟 Key Benefits
+## Project Structure
 
-### For Freelancers
-- **No Platform Fees**: Keep 100% of your earnings (minus gas fees)
-- **Secure Payments**: Smart contract escrow ensures payment security
-- **Reputation Building**: On-chain reputation system for credibility
-- **Flexible Work**: Choose from bounties, gigs, or staked projects
-- **Global Access**: Work with clients worldwide without borders
+```
+EarnX/
+├── app/                    # Next.js app directory
+│   ├── api/               # API routes
+│   ├── dashboard/         # Dashboard pages
+│   └── page.tsx           # Home page
+├── components/            # React components
+│   ├── ui/               # UI components
+│   └── freelance/        # Freelance-specific components
+├── contracts/            # Solidity smart contracts
+├── hooks/                # Custom React hooks
+├── lib/                  # Utility libraries
+├── db/                   # Database schema and client
+├── scripts/              # Deployment scripts
+└── public/               # Static assets
+```
+
+## Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
+- `npm run compile` - Compile smart contracts
+- `npm run test` - Run Hardhat tests
+- `npm run deploy:all:sepolia` - Deploy all contracts to Sepolia
+- `npm run prisma:generate` - Generate Prisma client
+- `npm run prisma:studio` - Open Prisma Studio
+
+## Usage
 
 ### For Clients
-- **Quality Assurance**: Staking mechanism ensures freelancer commitment
-- **Transparent Process**: All transactions visible on blockchain
-- **Cost Effective**: Minimal fees compared to traditional platforms
-- **Secure Escrow**: Funds held safely until work completion
-- **Multiple Options**: Bounty competitions or direct hiring
 
-## 🤝 Contributing
+1. Connect your Web3 wallet
+2. Navigate to the dashboard
+3. Post a bounty or freelance gig with detailed requirements
+4. Fund the escrow with USDT
+5. Review proposals and select the best fit
+6. Approve completed work to release payment
 
-We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
+### For Freelancers
+
+1. Connect your wallet and complete onboarding
+2. Browse available bounties and freelance gigs
+3. Submit detailed proposals with evidence
+4. Complete work and deliver results
+5. Receive secure payments through smart contract escrow
+
+## Development
+
+### Contract Deployment
+
+Deploy contracts to Sepolia testnet:
+
+```bash
+# Deploy all contracts
+npm run deploy:all:sepolia
+
+# Deploy individual contracts
+npm run deploy:usdt:sepolia
+npm run deploy:bounty:sepolia
+npm run deploy:freelance:sepolia
+```
+
+### Database Management
+
+```bash
+# Generate Prisma client
+npm run prisma:generate
+
+# Run migrations
+npx prisma migrate dev --schema=db/prisma/schema.prisma
+
+# Open Prisma Studio
+npm run prisma:studio
+```
+
+## Security Considerations
+
+- All smart contracts use OpenZeppelin's battle-tested libraries
+- Reentrancy guards protect against common attack vectors
+- Ownership controls limit admin functions
+- All user funds are held in escrow until work completion
+- Platform fees are minimal and transparent
+
+## Contributing
+
+Contributions are welcome! Please follow these steps:
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
@@ -198,26 +235,14 @@ We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🔗 Links
+## Support
 
-- **Live Demo**: [fork-your-work.vercel.app/](https://fork-your-work.vercel.app/)
-- **GitHub Repository**: [github.com/manovHacksaw/fork-your-work](https://github.com/manovHacksaw/fork-your-work)
-- **Documentation**: [Coming Soon]
-
-## 🙏 Acknowledgments
-
-- Built with [Next.js](https://nextjs.org/)
-- Smart contracts powered by [OpenZeppelin](https://openzeppelin.com/)
-- UI components from [Radix UI](https://www.radix-ui.com/)
-- Animations by [Framer Motion](https://www.framer.com/motion/)
+For issues, questions, or contributions, please open an issue on the GitHub repository.
 
 ---
 
-**Fork Work** - Revolutionizing the future of work, one smart contract at a time. 🚀
-
-*The only cut taken? Your gas fees.*
-# fork-your-work
+Built with Next.js, Solidity, and Web3 technologies.

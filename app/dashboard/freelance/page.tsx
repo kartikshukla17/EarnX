@@ -3,9 +3,10 @@
 import { useState, useEffect } from "react"
 import { motion, type Variants } from "framer-motion"
 import { Poppins } from 'next/font/google'
+import { useSearchParams } from "next/navigation"
 import { cn } from "@/lib/utils"
 import { AuroraText } from "@/components/magicui/aurora-text"
-import { Plus, Search, DollarSign, User, Briefcase, AlertCircle, ChevronRight, ArrowLeft, Eye, CheckCircle, Clock, Users, FileText, Star, Loader2 } from 'lucide-react'
+import { Plus, Search, DollarSign, User, Briefcase, AlertCircle, ChevronRight, ArrowLeft, Eye, CheckCircle, Clock, Users, FileText, Star, Loader2, RefreshCw } from 'lucide-react'
 import Link from "next/link"
 import { useReadContract } from "wagmi"
 import { formatUnits, formatEther } from "viem"
@@ -61,11 +62,15 @@ function GigCard({ gigId, index }: GigCardProps) {
     },
   }
 
-  const { data: gigDetails } = useReadContract({
+  const { data: gigDetails, refetch: refetchGigDetails } = useReadContract({
     address: FREELANCE_CONTRACT_ADDRESS,
     abi: FREELANCE_ABI,
     functionName: "getGigDetails",
     args: [BigInt(gigId)],
+    query: {
+      refetchInterval: 10000, // Refetch every 10 seconds
+      refetchOnWindowFocus: true,
+    },
   })
 
   const { data: proposals } = useReadContract({
@@ -73,6 +78,10 @@ function GigCard({ gigId, index }: GigCardProps) {
     abi: FREELANCE_ABI,
     functionName: "getAllProposals",
     args: [BigInt(gigId)],
+    query: {
+      refetchInterval: 10000,
+      refetchOnWindowFocus: true,
+    },
   })
 
   const fetchIpfsMetadata = async (detailsUri: string) => {
@@ -88,9 +97,17 @@ function GigCard({ gigId, index }: GigCardProps) {
 
   useEffect(() => {
     if (gigDetails && gigDetails.detailsUri) {
+      setIsLoading(true)
       fetchIpfsMetadata(gigDetails.detailsUri)
+    } else if (gigDetails) {
+      setIsLoading(false)
     }
   }, [gigDetails])
+
+  // Refetch gig details when component mounts or when gigId changes
+  useEffect(() => {
+    refetchGigDetails()
+  }, [gigId, refetchGigDetails])
 
   useEffect(() => {
     if (proposals) {
@@ -122,7 +139,23 @@ function GigCard({ gigId, index }: GigCardProps) {
     return { label: "Open", color: "text-green-400 bg-green-400/10 border-green-400/20" }
   }
 
-  if (!gigDetails || gigDetails.client === "0x0000000000000000000000000000000000000000") {
+  // Show loading state while fetching
+  if (!gigDetails) {
+    return (
+      <motion.div
+        className="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-8"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+      >
+        <div className="flex items-center justify-center py-8">
+          <Loader2 className="w-6 h-6 text-gray-400 animate-spin" />
+        </div>
+      </motion.div>
+    )
+  }
+
+  // Hide invalid gigs (no client address)
+  if (gigDetails.client === "0x0000000000000000000000000000000000000000") {
     return null
   }
 
@@ -266,14 +299,19 @@ function GigCard({ gigId, index }: GigCardProps) {
 
 function FreelancePage() {
   const { address, isConnected } = useWallet()
+  const searchParams = useSearchParams()
   const [gigIds, setGigIds] = useState<number[]>([])
   const [searchTerm, setSearchTerm] = useState("")
   const [showWalletModal, setShowWalletModal] = useState(false)
 
-  const { data: gigCount } = useReadContract({
+  const { data: gigCount, refetch: refetchGigCount } = useReadContract({
     address: FREELANCE_CONTRACT_ADDRESS,
     abi: FREELANCE_ABI,
     functionName: "gigCount",
+    query: {
+      refetchInterval: 5000, // Refetch every 5 seconds
+      refetchOnWindowFocus: true, // Refetch when window gains focus
+    },
   })
 
   useEffect(() => {
@@ -282,6 +320,34 @@ function FreelancePage() {
       setGigIds(ids.reverse()) // Show newest first
     }
   }, [gigCount])
+
+  // Refetch when page becomes visible (e.g., when navigating back from post page)
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (!document.hidden) {
+        refetchGigCount()
+      }
+    }
+
+    document.addEventListener("visibilitychange", handleVisibilityChange)
+    return () => document.removeEventListener("visibilitychange", handleVisibilityChange)
+  }, [refetchGigCount])
+
+  // Refetch on mount and when returning to page
+  useEffect(() => {
+    refetchGigCount()
+  }, [refetchGigCount])
+
+  // Handle refresh query parameter (from post page redirect)
+  useEffect(() => {
+    const refresh = searchParams.get("refresh")
+    if (refresh) {
+      // Small delay to ensure transaction is mined
+      setTimeout(() => {
+        refetchGigCount()
+      }, 1000)
+    }
+  }, [searchParams, refetchGigCount])
 
   const cardVariants: Variants = {
     initial: { opacity: 0, y: 20 },
@@ -445,6 +511,16 @@ function FreelancePage() {
                 <button className="px-4 py-3 bg-white/5 border border-white/20 rounded-2xl text-white hover:border-emerald-400 transition-colors duration-200">
                   In Progress
                 </button>
+                <motion.button
+                  onClick={() => refetchGigCount()}
+                  className="px-4 py-3 bg-white/5 border border-white/20 rounded-2xl text-white hover:border-emerald-400 transition-colors duration-200 flex items-center gap-2"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  title="Refresh gigs list"
+                >
+                  <RefreshCw className="w-4 h-4" />
+                  <span className="hidden sm:inline">Refresh</span>
+                </motion.button>
               </div>
             </div>
           </div>

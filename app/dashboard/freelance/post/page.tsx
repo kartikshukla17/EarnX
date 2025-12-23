@@ -175,7 +175,8 @@ function PostGigPage() {
     if (isConfirmed) {
       toast.success("Gig posted successfully!")
       setTimeout(() => {
-        router.push("/dashboard/freelance")
+        // Use router.replace with a timestamp to force refresh
+        router.replace(`/dashboard/freelance?refresh=${Date.now()}`)
       }, 2000)
     }
   }, [isConfirmed, router])
