@@ -7,7 +7,9 @@ import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useWaitForTransactionReceipt } from "wagmi"
 import { useSafeWriteContract } from "@/hooks/use-safe-write-contract"
+import { useMockWriteContract, useMockWaitForTransactionReceipt } from "@/hooks/use-mock-contracts"
 import { parseUnits, parseEther } from "viem"
+import { sepolia } from "viem/chains"
 import { toast } from "sonner"
 
 import { cn } from "@/lib/utils"
@@ -19,6 +21,9 @@ import { AuroraText } from "@/components/magicui/aurora-text"
 import { WalletConnectModal } from "@/components/wallet-connect-module"
 import { WalletDisplay } from "@/components/ui/wallet-display"
 import { ArrowLeft, Briefcase, DollarSign, Clock, FileText, Sparkles, AlertCircle, Info } from "lucide-react"
+
+// Enable/disable mock mode
+const MOCK_MODE = true
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
@@ -85,8 +90,18 @@ function PostGigPage() {
   const [duration, setDuration] = useState("")
   const [proposalDuration, setProposalDuration] = useState("")
 
-  // Transaction state
-  const { writeContractAsync, isPending: isWritePending, hash, isConfirming, isConfirmed } = useSafeWriteContract()
+  // Use mock or real contracts based on MOCK_MODE
+  const realHook = useSafeWriteContract()
+  const mockHook = useMockWriteContract()
+  const contractHook = MOCK_MODE ? mockHook : realHook
+
+  const { writeContractAsync, isPending: isWritePending, hash } = contractHook as any
+
+  const realReceipt = useWaitForTransactionReceipt({ hash })
+  const mockReceipt = useMockWaitForTransactionReceipt({ hash })
+  const receipt = MOCK_MODE ? mockReceipt : realReceipt
+
+  const { isLoading: isConfirming, isSuccess: isConfirmed } = receipt as any
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
@@ -141,6 +156,11 @@ function PostGigPage() {
           durationDaysBigInt,
           proposalDurationDaysBigInt,
         ],
+        ...(MOCK_MODE ? {} : {
+          account: address as `0x${string}`,
+          chain: sepolia,
+        }),
+        account: address as `0x${string}`,
       })
 
       toast.loading("Waiting for confirmation...", { id: toastId })

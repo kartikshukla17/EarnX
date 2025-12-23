@@ -3,6 +3,10 @@ import { createPublicClient, http, getContract } from 'viem';
 import { sepolia } from 'viem/chains';
 import { FREELANCE_ABI, FREELANCE_CONTRACT_ADDRESS } from '@/lib/contracts';
 import { getFromPinata } from '@/lib/pinata';
+import { mockContractState } from '@/lib/mock-contracts';
+
+// Enable/disable mock mode
+const MOCK_MODE = true;
 
 const publicClient = createPublicClient({
   chain: sepolia,
@@ -11,6 +15,33 @@ const publicClient = createPublicClient({
 
 export async function GET() {
   try {
+    // Use mock data if in mock mode
+    if (MOCK_MODE) {
+      const allGigs = mockContractState.getAllGigs();
+      
+      const gigs = allGigs
+        .filter(gig => gig.status === 0) // Only open gigs
+        .map(gig => ({
+          id: gig.id,
+          poster: gig.poster,
+          title: gig.title,
+          shortDescription: gig.shortDescription,
+          detailsUri: gig.detailsUri,
+          usdtAmount: Number(gig.usdtAmount),
+          nativeStake: Number(gig.nativeStake),
+          duration: gig.duration,
+          proposalDuration: gig.proposalDuration,
+          status: gig.status,
+          proposalCount: gig.proposalCount,
+          selectedProposal: gig.selectedProposal,
+          postedAt: gig.postedAt,
+          deadline: gig.deadline,
+        }));
+      
+      return NextResponse.json(gigs);
+    }
+
+    // Original blockchain logic
     const contract = getContract({
       address: FREELANCE_CONTRACT_ADDRESS,
       abi: FREELANCE_ABI,

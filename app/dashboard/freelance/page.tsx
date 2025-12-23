@@ -5,7 +5,7 @@ import { motion, type Variants } from "framer-motion"
 import { Poppins } from 'next/font/google'
 import { cn } from "@/lib/utils"
 import { AuroraText } from "@/components/magicui/aurora-text"
-import { Plus, Search, DollarSign, User, Briefcase, AlertCircle, ChevronRight, ArrowLeft, Eye, CheckCircle, Clock, Users, FileText, Star } from 'lucide-react'
+import { Plus, Search, DollarSign, User, Briefcase, AlertCircle, ChevronRight, ArrowLeft, Eye, CheckCircle, Clock, Users, FileText, Star, Loader2 } from 'lucide-react'
 import Link from "next/link"
 import { useReadContract } from "wagmi"
 import { formatUnits, formatEther } from "viem"
@@ -14,6 +14,9 @@ import { getFromPinata } from "@/lib/pinata"
 import { useWallet } from "@/contexts/wallet-context"
 import { WalletDisplay } from "@/components/ui/wallet-display"
 import { WalletConnectModal } from "@/components/wallet-connect-module"
+
+// Enable/disable mock mode
+const MOCK_MODE = true
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700"],

@@ -31,12 +31,16 @@ import {
 import Link from "next/link"
 import { useWaitForTransactionReceipt, useReadContract, useAccount } from "wagmi"
 import { useSafeWriteContract } from "@/hooks/use-safe-write-contract"
+import { useMockWriteContract, useMockWaitForTransactionReceipt, useMockReadContract } from "@/hooks/use-mock-contracts"
 import { parseUnits, formatUnits } from "viem"
 import { sepolia } from "viem/chains"
 import { BOUNTY_CONTRACT_ADDRESS, BOUNTY_ABI, USDT_TOKEN_ADDRESS, ERC20_ABI } from "@/lib/contracts"
 import { uploadToPinata, type PinataMetadata } from "@/lib/pinata"
 import { useWallet } from "@/contexts/wallet-context"
 import { WalletDisplay } from "@/components/ui/wallet-display"
+
+// Enable/disable mock mode
+const MOCK_MODE = true
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
@@ -151,27 +155,39 @@ export default function PostBounty() {
     },
   }
 
+  // Use mock or real contracts based on MOCK_MODE
+  const realApproveHook = useSafeWriteContract()
+  const mockApproveHook = useMockWriteContract()
+  const approveHook = MOCK_MODE ? mockApproveHook : realApproveHook
+
+  const realCreateHook = useSafeWriteContract()
+  const mockCreateHook = useMockWriteContract()
+  const createHook = MOCK_MODE ? mockCreateHook : realCreateHook
+
   const {
     writeContract: approveContract,
     hash: approveHash,
     isPending: isApprovePending,
     error: approveError,
-  } = useSafeWriteContract()
+  } = approveHook as any
 
   const {
     writeContract: createContract,
     hash: createHash,
     isPending: isCreatePending,
     error: createError,
-  } = useSafeWriteContract()
+  } = createHook as any
 
-  const { isLoading: isApproveConfirming, isSuccess: isApproveSuccess } = useWaitForTransactionReceipt({
-    hash: approveHash,
-  })
+  const realApproveReceipt = useWaitForTransactionReceipt({ hash: approveHash })
+  const mockApproveReceipt = useMockWaitForTransactionReceipt({ hash: approveHash })
+  const approveReceipt = MOCK_MODE ? mockApproveReceipt : realApproveReceipt
 
-  const { isLoading: isCreateConfirming, isSuccess: isCreateSuccess } = useWaitForTransactionReceipt({
-    hash: createHash,
-  })
+  const realCreateReceipt = useWaitForTransactionReceipt({ hash: createHash })
+  const mockCreateReceipt = useMockWaitForTransactionReceipt({ hash: createHash })
+  const createReceipt = MOCK_MODE ? mockCreateReceipt : realCreateReceipt
+
+  const { isLoading: isApproveConfirming, isSuccess: isApproveSuccess } = approveReceipt as any
+  const { isLoading: isCreateConfirming, isSuccess: isCreateSuccess } = createReceipt as any
 
   // Debug logging for state changes
   useEffect(() => {
@@ -186,7 +202,7 @@ export default function PostBounty() {
   }, [currentStep, isCreatePending, isCreateConfirming, isCreateSuccess, createHash, createError])
 
   // Check USDT balance and allowance
-  const { data: usdtBalance } = useReadContract({
+  const realBalanceHook = useReadContract({
     address: USDT_TOKEN_ADDRESS,
     abi: ERC20_ABI,
     functionName: "balanceOf",
@@ -194,8 +210,16 @@ export default function PostBounty() {
     args: [address || "0x0"],
     query: { enabled: !!address },
   })
+  const mockBalanceHook = useMockReadContract({
+    address: USDT_TOKEN_ADDRESS,
+    abi: ERC20_ABI,
+    functionName: "balanceOf",
+    args: [address || "0x0"],
+    query: { enabled: !!address },
+  })
+  const { data: usdtBalance } = (MOCK_MODE ? mockBalanceHook : realBalanceHook) as any
 
-  const { data: allowance, refetch: refetchAllowance } = useReadContract({
+  const realAllowanceHook = useReadContract({
     address: USDT_TOKEN_ADDRESS,
     abi: ERC20_ABI,
     functionName: "allowance",
@@ -203,13 +227,28 @@ export default function PostBounty() {
     args: [address || "0x0", BOUNTY_CONTRACT_ADDRESS],
     query: { enabled: !!address },
   })
+  const mockAllowanceHook = useMockReadContract({
+    address: USDT_TOKEN_ADDRESS,
+    abi: ERC20_ABI,
+    functionName: "allowance",
+    args: [address || "0x0", BOUNTY_CONTRACT_ADDRESS],
+    query: { enabled: !!address },
+  })
+  const allowanceHook = (MOCK_MODE ? mockAllowanceHook : realAllowanceHook) as any
+  const { data: allowance, refetch: refetchAllowance } = allowanceHook
 
   // Read next bounty id so we know the ID that will be assigned on creation
-  const { data: nextBountyIdOnChain } = useReadContract({
+  const realNextIdHook = useReadContract({
     address: BOUNTY_CONTRACT_ADDRESS,
     abi: BOUNTY_ABI,
     functionName: "nextBountyId",
   })
+  const mockNextIdHook = useMockReadContract({
+    address: BOUNTY_CONTRACT_ADDRESS,
+    abi: BOUNTY_ABI,
+    functionName: "nextBountyId",
+  })
+  const { data: nextBountyIdOnChain } = (MOCK_MODE ? mockNextIdHook : realNextIdHook) as any
 
   const uploadToIPFS = async (metadata: PinataMetadata): Promise<string> => {
     setUploadProgress(0)
@@ -307,8 +346,11 @@ export default function PostBounty() {
           abi: ERC20_ABI,
           functionName: "approve",
           args: [BOUNTY_CONTRACT_ADDRESS, rewardAmount],
+          ...(MOCK_MODE ? {} : {
+            account: address as `0x${string}`,
+            chain: sepolia,
+          }),
           account: address as `0x${string}`,
-          chain: sepolia,
         })
       } else {
         setCurrentStep(CreateStep.CREATE)
@@ -354,8 +396,11 @@ export default function PostBounty() {
         abi: BOUNTY_ABI,
         functionName: "createBounty",
         args: [formData.name, formData.description, categoryId, BigInt(deadlineTimestamp), rewardAmount],
+        ...(MOCK_MODE ? {} : {
+          account: address as `0x${string}`,
+          chain: sepolia,
+        }),
         account: address as `0x${string}`,
-        chain: sepolia,
       })
       console.log("✅ createContract called successfully")
     } catch (error) {

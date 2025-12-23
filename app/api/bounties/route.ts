@@ -2,6 +2,10 @@ import { NextResponse } from 'next/server';
 import { createPublicClient, http, getContract } from 'viem';
 import { sepolia } from 'viem/chains';
 import { BOUNTY_ABI, BOUNTY_CONTRACT_ADDRESS } from '@/lib/contracts';
+import { mockContractState } from '@/lib/mock-contracts';
+
+// Enable/disable mock mode
+const MOCK_MODE = true;
 
 const publicClient = createPublicClient({
   chain: sepolia,
@@ -10,6 +14,29 @@ const publicClient = createPublicClient({
 
 export async function GET() {
   try {
+    // Use mock data if in mock mode
+    if (MOCK_MODE) {
+      const allBounties = mockContractState.getAllBounties();
+      
+      const bounties = allBounties
+        .filter(bounty => bounty.status === 0) // Only open bounties
+        .map(bounty => ({
+          id: bounty.id,
+          name: bounty.name,
+          description: bounty.description,
+          category: bounty.category,
+          deadline: bounty.deadline,
+          totalReward: Number(bounty.totalReward),
+          status: bounty.status,
+          submissionCount: bounty.submissionCount,
+          createdAt: bounty.createdAt,
+          creator: bounty.creator,
+        }));
+      
+      return NextResponse.json(bounties);
+    }
+
+    // Original blockchain logic
     const contract = getContract({
       address: BOUNTY_CONTRACT_ADDRESS,
       abi: BOUNTY_ABI,
