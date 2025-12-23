@@ -49,6 +49,7 @@ const nextConfig: NextConfig = {
     domains: [
       "i.pinimg.com", ]
   },
+  // Use webpack explicitly (Turbopack is default in Next.js 16)
   webpack: (config) => {
     // Handle ESM modules
     config.resolve.fallback = {
@@ -80,6 +81,8 @@ const nextConfig: NextConfig = {
 
     return config;
   },
+  // Empty turbopack config to silence the warning (we're using webpack)
+  turbopack: {},
   // experimental: {
   //   esmExternals: 'loose',
   // },

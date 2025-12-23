@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "prisma generate --schema=db/prisma/schema.prisma && next build",
+    "build": "prisma generate --schema=db/prisma/schema.prisma && next build --webpack",
     "start": "next start",
     "lint": "next lint",
     "postinstall": "prisma generate --schema=db/prisma/schema.prisma",
@@ -67,6 +67,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "babel-loader": "^10.0.0",
+    "baseline-browser-mapping": "^2.9.11",
     "dotenv": "^17.2.3",
     "hardhat": "^2.26.3",
     "prisma": "^6.10.1",
