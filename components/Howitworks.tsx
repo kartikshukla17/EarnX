@@ -65,23 +65,23 @@ export default function HowItWorks() {
     {
       icon: Wallet,
       step: "Step 1",
-      title: "Connect & Onboard",
-      description: "Connect your wallet and link your GitHub, LinkedIn, and other professional profiles",
-      features: ["Wallet connection", "GitHub integration", "LinkedIn profile", "XYZ platform (optional)"],
+      title: "Connect & Set Goals",
+      description: "Connect your wallet, tell us your skills, and set how you want to earn in the freelance economy.",
+      features: ["Wallet connection", "Skill & niche selection", "Income goals", "On-chain profile"],
     },
     {
       icon: Trophy,
       step: "Step 2",
-      title: "Build Reputation",
-      description: "Complete tasks, build your on-chain reputation, and establish trust in the community",
-      features: ["Algorithm-based reputation", "On-chain verification", "Community trust", "Skill validation"],
+      title: "Find Gigs & Bounties",
+      description: "Browse curated bounties, gigs, and projects matched to your skills with transparent rewards.",
+      features: ["On-chain bounties", "Escrowed freelance gigs", "Client projects", "Signal from staked commitments"],
     },
     {
       icon: DollarSign,
       step: "Step 3",
-      title: "Start Earning",
-      description: "Choose from bounties, freelance gigs, staked commitments, or earn through referrals",
-      features: ["Bounty competitions", "Freelance projects", "Staked applications", "Referral rewards"],
+      title: "Deliver & Get Paid",
+      description: "Submit work, get approved on-chain, and unlock payments from escrow directly to your wallet.",
+      features: ["Smart-contract escrow", "Programmable payouts", "Reputation growth", "Tap into a $1.5T+ market"],
     },
   ]
 
@@ -113,8 +113,8 @@ export default function HowItWorks() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
           >
-            <AuroraText colors={["#cc4368", "#e6295c", "#ffffff", "#E23E6B"]}>
-              <span className="text-transparent">How It Works</span>
+            <AuroraText colors={["#22C55E", "#4ADE80", "#BBF7D0", "#A3E635"]}>
+              <span className="text-transparent">How EarnX Works</span>
             </AuroraText>
           </motion.h1>
           <motion.p
@@ -123,7 +123,7 @@ export default function HowItWorks() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.7 }}
           >
-            Get started in three simple steps and begin your Web3 career journey.
+            Three simple steps to turn your skills into on-chain income in the $1.5T freelance market.
           </motion.p>
         </motion.div>
 

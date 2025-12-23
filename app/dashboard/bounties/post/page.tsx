@@ -504,7 +504,7 @@ export default function PostBounty() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-green-500/20 to-[#E23E6B]/20 opacity-50 rounded-3xl"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/20 to-lime-400/20 opacity-50 rounded-3xl"></div>
             <div className="relative z-10 text-center">
               <motion.div
                 initial={{ scale: 0 }}
@@ -667,7 +667,7 @@ export default function PostBounty() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7 }}
             >
-              <AuroraText colors={["#cc4368", "#e6295c", "#ffffff", "#E23E6B"]}>
+              <AuroraText colors={["#22C55E", "#4ADE80", "#BBF7D0", "#A3E635"]}>
                 <span className="text-transparent">Create New Bounty</span>
               </AuroraText>
             </motion.h1>
@@ -686,7 +686,7 @@ export default function PostBounty() {
               <WalletDisplay />
               <Link href="/dashboard/bounties">
                 <motion.button
-                  className="flex items-center space-x-3 px-6 py-3 bg-gradient-to-r from-[#E23E6B] to-[#cc4368] text-white font-medium rounded-2xl hover:from-[#cc4368] hover:to-[#E23E6B] transition-all duration-300 shadow-lg hover:shadow-xl"
+                  className="flex items-center space-x-3 px-6 py-3 bg-gradient-to-r from-emerald-500 to-lime-400 text-white font-medium rounded-2xl hover:from-emerald-400 hover:to-lime-300 transition-all duration-300 shadow-lg hover:shadow-xl"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -706,12 +706,12 @@ export default function PostBounty() {
           transition={{ delay: 0.2, duration: 0.5 }}
         >
           <div className="flex justify-between text-sm mb-3">
-            <span className="font-medium">Creation Progress</span>
-            <span className="text-[#E23E6B] font-medium">{getStepProgress()}%</span>
+            <span className="font-medium text-gray-200">Creation Progress</span>
+            <span className="text-emerald-400 font-medium">{getStepProgress()}%</span>
           </div>
           <div className="w-full bg-white/10 rounded-full h-3 mb-4 overflow-hidden">
             <motion.div
-              className="bg-gradient-to-r from-[#E23E6B] to-[#cc4368] h-3 rounded-full shadow-lg"
+              className="bg-gradient-to-r from-emerald-500 via-lime-400 to-emerald-500 h-3 rounded-full shadow-lg"
               initial={{ width: 0 }}
               animate={{ width: `${getStepProgress()}%` }}
               transition={{ duration: 0.5, ease: "easeInOut" }}
@@ -719,25 +719,25 @@ export default function PostBounty() {
           </div>
           <div className="grid grid-cols-4 gap-2 text-xs">
             <div
-              className={`text-center p-2 rounded-xl transition-all ${currentStep === CreateStep.FORM ? "bg-[#E23E6B]/20 text-[#E23E6B] font-medium" : "text-gray-400"}`}
+              className={`text-center p-2 rounded-xl transition-all ${currentStep === CreateStep.FORM ? "bg-emerald-500/15 text-emerald-300 font-medium" : "text-gray-400"}`}
             >
               <div className="mb-1">📝</div>
               <div>Form</div>
             </div>
             <div
-              className={`text-center p-2 rounded-xl transition-all ${currentStep === CreateStep.IPFS ? "bg-[#E23E6B]/20 text-[#E23E6B] font-medium" : "text-gray-400"}`}
+              className={`text-center p-2 rounded-xl transition-all ${currentStep === CreateStep.IPFS ? "bg-emerald-500/15 text-emerald-300 font-medium" : "text-gray-400"}`}
             >
               <div className="mb-1">📤</div>
               <div>IPFS</div>
             </div>
             <div
-              className={`text-center p-2 rounded-xl transition-all ${currentStep === CreateStep.APPROVE ? "bg-[#E23E6B]/20 text-[#E23E6B] font-medium" : "text-gray-400"}`}
+              className={`text-center p-2 rounded-xl transition-all ${currentStep === CreateStep.APPROVE ? "bg-emerald-500/15 text-emerald-300 font-medium" : "text-gray-400"}`}
             >
               <div className="mb-1">✅</div>
               <div>Approve</div>
             </div>
             <div
-              className={`text-center p-2 rounded-xl transition-all ${currentStep === CreateStep.CREATE ? "bg-[#E23E6B]/20 text-[#E23E6B] font-medium" : "text-gray-400"}`}
+              className={`text-center p-2 rounded-xl transition-all ${currentStep === CreateStep.CREATE ? "bg-emerald-500/15 text-emerald-300 font-medium" : "text-gray-400"}`}
             >
               <div className="mb-1">🚀</div>
               <div>Create</div>
@@ -899,7 +899,7 @@ export default function PostBounty() {
             animate="animate"
             whileHover="hover"
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-white to-[#E23E6B] opacity-0 group-hover:opacity-5 transition-opacity duration-300 rounded-3xl"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-white to-emerald-400 opacity-0 group-hover:opacity-5 transition-opacity duration-300 rounded-3xl"></div>
             <div className="relative z-10">
               <form onSubmit={handleFormSubmit} className="space-y-8">
                 {/* Bounty Title */}
@@ -913,7 +913,7 @@ export default function PostBounty() {
                     placeholder="E.g., Build a frontend dashboard for DeFi analytics"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:border-[#E23E6B] focus:ring-2 focus:ring-[#E23E6B]/20 transition-all duration-200"
+                    className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20 transition-all duration-200"
                     required
                   />
                   <p className="text-sm text-gray-400">Choose a clear, descriptive title for your bounty</p>
@@ -1008,7 +1008,7 @@ export default function PostBounty() {
                           key={category.value}
                           className={`border rounded-2xl p-4 cursor-pointer transition-all duration-200 ${
                             isSelected
-                              ? "border-[#E23E6B] bg-[#E23E6B]/10 shadow-lg shadow-[#E23E6B]/20"
+                              ? "border-emerald-400 bg-emerald-500/10 shadow-lg shadow-emerald-500/20"
                               : "border-white/20 hover:border-white/40 hover:bg-white/5"
                           }`}
                           onClick={() => setFormData({ ...formData, category: category.value.toString() })}
@@ -1025,7 +1025,7 @@ export default function PostBounty() {
                                 {category.description}
                               </div>
                             </div>
-                            {isSelected && <CheckCircle className="w-5 h-5 text-[#E23E6B] flex-shrink-0" />}
+                            {isSelected && <CheckCircle className="w-5 h-5 text-emerald-400 flex-shrink-0" />}
                           </div>
                         </motion.div>
                       )
@@ -1050,7 +1050,7 @@ export default function PostBounty() {
                         placeholder="100.00"
                         value={formData.totalReward}
                         onChange={(e) => setFormData({ ...formData, totalReward: e.target.value })}
-                        className="w-full pl-10 pr-16 py-3 bg-white/5 border border-white/20 rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:border-[#E23E6B] focus:ring-2 focus:ring-[#E23E6B]/20 transition-all duration-200"
+                        className="w-full pl-10 pr-16 py-3 bg-white/5 border border-white/20 rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20 transition-all duration-200"
                         required
                       />
                       <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 font-medium">
@@ -1081,7 +1081,7 @@ export default function PostBounty() {
                           value={formData.deadlineDate}
                           onChange={(e) => setFormData({ ...formData, deadlineDate: e.target.value })}
                           min={new Date().toISOString().split('T')[0]}
-                          className="w-full pl-10 pr-4 py-3 bg-white/5 border border-white/20 rounded-2xl text-white focus:outline-none focus:border-[#E23E6B] focus:ring-2 focus:ring-[#E23E6B]/20 transition-all duration-200 [&::-webkit-calendar-picker-indicator]:filter [&::-webkit-calendar-picker-indicator]:invert [&::-webkit-calendar-picker-indicator]:opacity-50 [&::-webkit-calendar-picker-indicator]:hover:opacity-100"
+                          className="w-full pl-10 pr-4 py-3 bg-white/5 border border-white/20 rounded-2xl text-white focus:outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20 transition-all duration-200 [&::-webkit-calendar-picker-indicator]:filter [&::-webkit-calendar-picker-indicator]:invert [&::-webkit-calendar-picker-indicator]:opacity-50 [&::-webkit-calendar-picker-indicator]:hover:opacity-100"
                           required
                         />
                       </div>
@@ -1100,7 +1100,7 @@ export default function PostBounty() {
                             const newTime = `${hours}:${minutes || '00'}`
                             setFormData({ ...formData, deadlineTime: newTime })
                           }}
-                          className="w-full pl-10 pr-4 py-3 bg-white/5 border border-white/20 rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:border-[#E23E6B] focus:ring-2 focus:ring-[#E23E6B]/20 transition-all duration-200"
+                          className="w-full pl-10 pr-4 py-3 bg-white/5 border border-white/20 rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20 transition-all duration-200"
                           required
                         />
                         <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm">
@@ -1122,7 +1122,7 @@ export default function PostBounty() {
                             const newTime = `${hours || '00'}:${minutes}`
                             setFormData({ ...formData, deadlineTime: newTime })
                           }}
-                          className="w-full pl-10 pr-4 py-3 bg-white/5 border border-white/20 rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:border-[#E23E6B] focus:ring-2 focus:ring-[#E23E6B]/20 transition-all duration-200"
+                          className="w-full pl-10 pr-4 py-3 bg-white/5 border border-white/20 rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20 transition-all duration-200"
                           required
                         />
                         <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm">
@@ -1186,7 +1186,7 @@ export default function PostBounty() {
 
                 <motion.button
                   type="submit"
-                  className="w-full py-4 bg-gradient-to-r from-[#E23E6B] to-[#cc4368] text-white font-medium rounded-2xl hover:from-[#cc4368] hover:to-[#E23E6B] transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full py-4 bg-gradient-to-r from-emerald-500 to-lime-400 text-white font-medium rounded-2xl hover:from-emerald-400 hover:to-lime-300 transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
                   disabled={!isConnected}
                   whileHover={{ scale: isConnected ? 1.02 : 1 }}
                   whileTap={{ scale: isConnected ? 0.98 : 1 }}

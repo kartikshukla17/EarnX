@@ -294,12 +294,13 @@ function Bounties() {
               </AuroraText>
             </motion.h1>
             <motion.p
-              className="text-gray-300/80 text-xl font-light"
+              className="text-gray-300/80 text-xl font-light max-w-2xl"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.7 }}
             >
-              Compete, stake, and settle bounty work for autonomous AI and Web3 projects with on-chain guarantees.
+              Competitive, escrow-backed bounties where freelancers ship work, stake reputation, and earn transparently
+              from ambitious clients.
             </motion.p>
           </div>
 

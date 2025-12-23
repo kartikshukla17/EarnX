@@ -332,12 +332,13 @@ function FreelancePage() {
               </AuroraText>
             </motion.h1>
             <motion.p
-              className="text-gray-300/80 text-xl font-light"
+              className="text-gray-300/80 text-xl font-light max-w-2xl"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.7 }}
             >
-              Escrow-protected gigs and AI-native workstreams, all settled and reputationally tracked on EarnX.
+              Discover escrow-protected gigs, longer-term projects, and repeat clients—designed for freelancers
+              disrupting the $1.5T services market with on-chain trust.
             </motion.p>
           </div>
 

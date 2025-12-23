@@ -18,7 +18,7 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          NASDAQ for AI Apps
+          Own Your<br className="hidden sm:block" /> Freelance Career
         </motion.h1>
 
         {/* Subheadline */}
@@ -28,7 +28,9 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
         >
-          Decentralized AI app ecosystem enabling discovery, deployment, tokenization, trading, and monetization of autonomous AI applications built on blockchain technology.
+          EarnX is the Web3 home for freelancers to find on-chain gigs, bounties, and projects—escrow-protected payouts,
+          global clients, and programmable trust in a{" "}
+          <span className="text-white font-semibold">$1.5T+</span> freelance economy.
         </motion.p>
 
         {/* Primary CTA */}

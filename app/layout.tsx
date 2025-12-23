@@ -16,8 +16,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "EarnX - NASDAQ for AI Apps",
-  description: "Decentralized AI app ecosystem enabling discovery, deployment, tokenization, trading, and monetization of autonomous AI applications built on blockchain technology.",
+  title: "EarnX - Web3 Freelance, Gigs & Bounties",
+  description:
+    "EarnX is a Web3-native marketplace for freelancers to find on-chain gigs, bounties, and projects—escrow-protected payouts, global clients, and programmable trust in a $1.5T freelance economy.",
 };
 
 export default function RootLayout({

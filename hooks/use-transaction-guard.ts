@@ -3,7 +3,9 @@
 import { useAccount } from "wagmi"
 import { toast } from "sonner"
 
-const REQUIRED_CHAIN_ID = 11155111
+// U2U Solaris mainnet chain ID (see README / SEPOLIA_MIGRATION.md)
+// If you later deploy to a different network, update this value accordingly.
+const REQUIRED_CHAIN_ID = 39
 
 export function useTransactionGuard() {
   const { isConnected, chainId } = useAccount()
@@ -16,7 +18,7 @@ export function useTransactionGuard() {
 
     if (chainId !== REQUIRED_CHAIN_ID) {
       toast.error("Wrong Network", {
-        description: "Please switch to Ethereum Sepolia to continue with this transaction."
+        description: `Please switch your wallet to the U2U Solaris network (chain ID ${REQUIRED_CHAIN_ID}) to continue.`
       })
       return false
     }
@@ -30,7 +32,7 @@ export function useTransactionGuard() {
     }
     
     if (chainId !== REQUIRED_CHAIN_ID) {
-      return `Wrong network. Please switch to Ethereum Sepolia (Chain ID: ${REQUIRED_CHAIN_ID}). Current chain: ${chainId}`
+      return `Wrong network. Please switch to U2U Solaris (Chain ID: ${REQUIRED_CHAIN_ID}). Current chain: ${chainId}`
     }
     
     return ""

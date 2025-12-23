@@ -70,7 +70,7 @@ export default function Jobs() {
               transition={{ duration: 0.7 }}
             >
               <AuroraText colors={["#22C55E", "#4ADE80", "#BBF7D0", "#A3E635"]}>
-                <span className="text-transparent">EarnX Job Feed</span>
+                <span className="text-transparent">EarnX Opportunity Feed</span>
               </AuroraText>
             </motion.h1>
             <motion.p
@@ -79,7 +79,8 @@ export default function Jobs() {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.7 }}
             >
-              Curated Web3 and AI roles that complement your on-chain EarnX profile and contribution history.
+              Curated remote roles and off-chain opportunities that plug into your on-chain EarnX reputation and
+              freelance income streams.
             </motion.p>
           </div>
 

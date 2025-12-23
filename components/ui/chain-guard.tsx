@@ -7,7 +7,8 @@ import { AlertTriangle, RefreshCw, ExternalLink } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 
-const REQUIRED_CHAIN_ID = 11155111
+// U2U Solaris mainnet chain ID for this dApp. Update if you deploy to a different network.
+const REQUIRED_CHAIN_ID = 39
 
 interface ChainGuardProps {
   children: React.ReactNode
@@ -41,17 +42,17 @@ export function ChainGuard({ children }: ChainGuardProps) {
   }
 
   const addSepoliaToWallet = () => {
-    // Ethereum Sepolia network details
+    // U2U Solaris network details
     const networkDetails = {
-      chainId: "0xaa36a7", // 11155111 in hex
-      chainName: "Ethereum Sepolia",
+      chainId: "0x27", // 39 in hex
+      chainName: "U2U Solaris",
       nativeCurrency: {
-        name: "Ether",
-        symbol: "ETH",
+        name: "U2U",
+        symbol: "U2U",
         decimals: 18,
       },
-      rpcUrls: ["https://rpc.sepolia.org"],
-      blockExplorerUrls: ["https://sepolia.etherscan.io"],
+      rpcUrls: ["https://rpc-mainnet.u2u.xyz"],
+      blockExplorerUrls: ["https://u2uscan.xyz"],
     }
 
     // Try to add the network to the wallet
@@ -94,14 +95,14 @@ export function ChainGuard({ children }: ChainGuardProps) {
                 Wrong Network Detected
               </CardTitle>
               <CardDescription className="text-gray-300">
-                This application only works on Ethereum Sepolia
+                This application only works on the U2U Solaris network.
               </CardDescription>
             </CardHeader>
             
             <CardContent className="space-y-4">
               <div className="text-center text-sm text-gray-400">
                 <p>Current Network: <span className="text-red-400">Chain ID {chainId}</span></p>
-                <p>Required Network: <span className="text-emerald-400">Ethereum Sepolia (Chain ID 11155111)</span></p>
+                <p>Required Network: <span className="text-emerald-400">U2U Solaris (Chain ID 39)</span></p>
               </div>
 
               <div className="space-y-3">

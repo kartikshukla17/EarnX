@@ -80,19 +80,19 @@ export default function BentoGrid() {
       <svg width="0" height="0" className="absolute">
         <linearGradient id="arrow-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
           <stop offset="0%" stopColor="white" />
-          <stop offset="100%" stopColor="#E23E6B" />
+          <stop offset="100%" stopColor="#22C55E" />
         </linearGradient>
         <linearGradient id="icon-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
           <stop offset="0%" stopColor="white" />
-          <stop offset="100%" stopColor="#E23E6B" />
+          <stop offset="100%" stopColor="#22C55E" />
         </linearGradient>
         <linearGradient id="lock-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
           <stop offset="0%" stopColor="white" />
-          <stop offset="100%" stopColor="#E23E6B" />
+          <stop offset="100%" stopColor="#22C55E" />
         </linearGradient>
         <linearGradient id="chevron-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
           <stop offset="0%" stopColor="white" />
-          <stop offset="100%" stopColor="#E23E6B" />
+          <stop offset="100%" stopColor="#22C55E" />
         </linearGradient>
       </svg>
 
@@ -106,11 +106,11 @@ export default function BentoGrid() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7 }}
       >
-        <AuroraText colors={["#cc4368", "#e6295c", "#ffffff", "#E23E6B"]}>
-          <span className="text-transparent">Web3 Hiring Revolution</span>
+        <AuroraText colors={["#22C55E", "#4ADE80", "#BBF7D0", "#A3E635"]}>
+          <span className="text-transparent">The Freelance OS for Web3</span>
         </AuroraText>
         <br />
-        Built on Trust, Powered by Blockchain
+        Gigs, bounties, and clients in a $1.5T market
       </motion.h1>
 
       {/* Main feature banner */}
@@ -129,26 +129,26 @@ export default function BentoGrid() {
             <div>
               <p
                 className={cn(
-                  "text-xs uppercase text-gray-300/80 mb-2 font-light group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-t group-hover:from-white group-hover:to-[#E23E6B] transition-colors duration-300",
+                  "text-xs uppercase text-gray-300/80 mb-2 font-light group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-t group-hover:from-white group-hover:to-emerald-400 transition-colors duration-300",
                   poppins.className,
                 )}
               >
-                REFERRAL NETWORK
+                FREELANCER HOME
               </p>
               <h2
                 className={cn(
-                  "text-4xl font-thin mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-t group-hover:from-white group-hover:to-[#E23E6B] transition-colors duration-300",
+                  "text-4xl font-thin mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-t group-hover:from-white group-hover:to-emerald-400 transition-colors duration-300",
                   poppins.className,
                 )}
               >
-                Earn on referrals,
+                Find serious gigs,
                 <br />
-                grow the ecosystem.
+                keep more of what you earn.
               </h2>
             </div>
             <motion.div variants={arrowVariants}>
               <ArrowRight
-                className="text-[#E23E6B] w-8 h-8 group-hover:text-white transition-colors duration-300"
+                className="text-emerald-400 w-8 h-8 group-hover:text-white transition-colors duration-300"
                 strokeWidth={1.5}
               />
             </motion.div>
@@ -172,16 +172,16 @@ export default function BentoGrid() {
             <div className="relative z-10 flex flex-col h-full">
               <p
                 className={cn(
-                  "text-xs uppercase text-gray-300/80 mb-6 font-light group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-t group-hover:from-white group-hover:to-[#E23E6B] transition-colors duration-300",
+                  "text-xs uppercase text-gray-300/80 mb-6 font-light group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-t group-hover:from-white group-hover:to-emerald-400 transition-colors duration-300",
                   poppins.className,
                 )}
               >
-                BOUNTY HIRING
+                COMPETITIVE BOUNTIES
               </p>
               <div className="flex-grow flex items-center justify-center mb-8">
                 <motion.div variants={iconVariants} initial="initial" animate="animate" whileHover="hover">
                   <MessageCircle
-                    className="w-24 h-24 text-[#E23E6B] group-hover:text-white transition-colors duration-300"
+                    className="w-24 h-24 text-emerald-400 group-hover:text-white transition-colors duration-300"
                     strokeWidth={1.5}
                   />
                 </motion.div>
@@ -193,13 +193,13 @@ export default function BentoGrid() {
                     poppins.className,
                   )}
                 >
-                  Stake &
+                  Win bounties
                   <br />
-                  Solve
+                  with proof of work
                 </h3>
                 <motion.div variants={arrowVariants}>
                   <ChevronRight
-                    className="text-[#E23E6B] w-6 h-6 group-hover:text-white transition-colors duration-300"
+                    className="text-emerald-400 w-6 h-6 group-hover:text-white transition-colors duration-300"
                     strokeWidth={1.5}
                   />
                 </motion.div>
@@ -222,11 +222,11 @@ export default function BentoGrid() {
             <div className="relative z-10 flex flex-col h-full">
               <p
                 className={cn(
-                  "text-xs uppercase text-gray-300/80 mb-6 font-light group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-t group-hover:from-white group-hover:to-[#E23E6B] transition-colors duration-300",
+                  "text-xs uppercase text-gray-300/80 mb-6 font-light group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-t group-hover:from-white group-hover:to-emerald-400 transition-colors duration-300",
                   poppins.className,
                 )}
               >
-                FREELANCE GIG
+                ESCROW GIGS
               </p>
               <div className="flex-grow flex items-center justify-center mb-6">
                 <motion.div
@@ -260,7 +260,7 @@ export default function BentoGrid() {
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                           <path
                             d="M12 2L15 8L21 9L16.5 14L18 20L12 17L6 20L7.5 14L3 9L9 8L12 2Z"
-                            fill="#E23E6B"
+                            fill="#22C55E"
                             stroke="none"
                           />
                         </svg>
@@ -280,7 +280,7 @@ export default function BentoGrid() {
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                           <path
                             d="M12 2L15 8L21 9L16.5 14L18 20L12 17L6 20L7.5 14L3 9L9 8L12 2Z"
-                            fill="#E23E6B"
+                            fill="#22C55E"
                             stroke="none"
                           />
                         </svg>
@@ -301,7 +301,7 @@ export default function BentoGrid() {
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
                           <path
                             d="M12 2L15 8L21 9L16.5 14L18 20L12 17L6 20L7.5 14L3 9L9 8L12 2Z"
-                            fill="#E23E6B"
+                            fill="#22C55E"
                             stroke="none"
                           />
                         </svg>
@@ -312,13 +312,13 @@ export default function BentoGrid() {
               </div>
               <h3
                 className={cn(
-                  "text-2xl font-thin mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-t group-hover:from-white group-hover:to-[#E23E6B] transition-colors duration-300",
+                  "text-2xl font-thin mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-t group-hover:from-white group-hover:to-emerald-400 transition-colors duration-300",
                   poppins.className,
                 )}
               >
-                Escrow
+                Escrow‑protected
                 <br />
-                Protected
+                freelance work
               </h3>
               <p className={cn("text-gray-300/70 text-sm mb-6 font-light leading-relaxed", poppins.className)}>
                 Smart contracts secure payments
@@ -327,12 +327,12 @@ export default function BentoGrid() {
               </p>
               <div className="flex justify-end mt-auto">
                 <motion.div
-                  className="w-12 h-12 bg-black/30 backdrop-blur-sm rounded-2xl flex items-center justify-center border border-white/10 group-hover:bg-gradient-to-r group-hover:from-[#E23E6B] group-hover:to-[#cc4368] transition-all duration-300"
+                  className="w-12 h-12 bg-black/30 backdrop-blur-sm rounded-2xl flex items-center justify-center border border-white/10 group-hover:bg-gradient-to-r group-hover:from-emerald-500 group-hover:to-lime-400 transition-all duration-300"
                   whileHover={{ scale: 1.1 }}
                   transition={{ type: "spring", stiffness: 400, damping: 10 }}
                 >
                   <ChevronRight
-                    className="text-[#E23E6B] w-6 h-6 group-hover:text-white transition-colors duration-300"
+                    className="text-emerald-400 w-6 h-6 group-hover:text-white transition-colors duration-300"
                     strokeWidth={1.5}
                   />
                 </motion.div>
@@ -355,7 +355,7 @@ export default function BentoGrid() {
             <div className="relative z-10 flex flex-col h-full">
               <p
                 className={cn(
-                  "text-xs uppercase text-gray-300/80 mb-6 font-light group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-t group-hover:from-white group-hover:to-[#E23E6B] transition-colors duration-300",
+                  "text-xs uppercase text-gray-300/80 mb-6 font-light group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-t group-hover:from-white group-hover:to-emerald-400 transition-colors duration-300",
                   poppins.className,
                 )}
               >
@@ -364,7 +364,7 @@ export default function BentoGrid() {
               <div className="flex-grow flex items-center justify-center mb-8">
                 <motion.div variants={iconVariants} initial="initial" animate="animate" whileHover="hover">
                   <Lock
-                    className="w-20 h-20 text-[#E23E6B] group-hover:text-white transition-colors duration-300"
+                    className="w-20 h-20 text-emerald-400 group-hover:text-white transition-colors duration-300"
                     strokeWidth={1.5}
                   />
                 </motion.div>
@@ -376,13 +376,13 @@ export default function BentoGrid() {
                     poppins.className,
                   )}
                 >
-                  Anti-Ghost
+                  Anti‑ghosting
                   <br />
-                  Protocol
+                  for both sides
                 </h3>
                 <motion.div variants={arrowVariants}>
                   <ChevronRight
-                    className="text-[#E23E6B] w-6 h-6 group-hover:text-white transition-colors duration-300"
+                    className="text-emerald-400 w-6 h-6 group-hover:text-white transition-colors duration-300"
                     strokeWidth={1.5}
                   />
                 </motion.div>
@@ -406,26 +406,26 @@ export default function BentoGrid() {
               <div>
                 <p
                   className={cn(
-                    "text-xs uppercase text-gray-300/80 mb-2 font-light group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-t group-hover:from-white group-hover:to-[#E23E6B] transition-colors duration-300",
+                    "text-xs uppercase text-gray-300/80 mb-2 font-light group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-t group-hover:from-white group-hover:to-emerald-400 transition-colors duration-300",
                     poppins.className,
                   )}
                 >
-                  JOB MARKETPLACE
+                  OPPORTUNITY FEED
                 </p>
                 <h3
                   className={cn(
-                    "text-4xl font-thin group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-t group-hover:from-white group-hover:to-[#E23E6B] transition-colors duration-300",
+                    "text-4xl font-thin group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-t group-hover:from-white group-hover:to-emerald-400 transition-colors duration-300",
                     poppins.className,
                   )}
                 >
-                  Web3 Jobs
+                  Gigs, bounties
                   <br />
-                  Portal
+                  & off-chain roles
                 </h3>
               </div>
               <motion.div variants={arrowVariants}>
                 <ChevronRight
-                  className="text-[#E23E6B] w-10 h-10 group-hover:text-white transition-colors duration-300"
+                  className="text-emerald-400 w-10 h-10 group-hover:text-white transition-colors duration-300"
                   strokeWidth={1.5}
                 />
               </motion.div>

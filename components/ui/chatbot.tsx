@@ -53,7 +53,7 @@ export function Chatbot() {
     {
       id: "1",
       content:
-        "🚀 **Welcome to your Web3 Career Assistant!** 🚀\n\nI have **real-time access** to current opportunities across our platform! Here's what I can help you with:\n\n## 🎯 **Core Features:**\n✨ **Smart Job Matching** - AI-powered job recommendations based on your skills\n✨ **Real-time Opportunities** - Live updates on bounties, gigs, and positions  \n✨ **Career Analytics** - Track your progress and earnings across platforms\n✨ **Web3 Expertise** - Industry insights, trends, and professional guidance\n\n## 💼 **Available Services:**\n• **Current Job Opportunities** - Latest Web3 positions\n• **Active Bounties** - Earn rewards for completing tasks  \n• **Freelance Gigs** - Find project-based work\n• **Career Coaching** - Resume tips and interview preparation\n\n**💡 Pro Tip:** Use the quick action buttons below to instantly access specific opportunities and get personalized recommendations!\n\nWhat would you like to explore today?",
+        "🚀 **Welcome to your EarnX Freelance Copilot!** 🚀\n\nI’m here to help you navigate gigs, bounties, and projects in the **$1.5T+ global freelance market**.\n\n## 🎯 **What I can help you find:**\n✨ **On-chain Bounties** – Competitive tasks with escrowed USDT rewards  \n✨ **Freelance Gigs** – Longer projects with milestone-based payouts  \n✨ **Hybrid Roles** – Off-chain jobs that complement your on-chain reputation  \n✨ **Earnings Insights** – How your work adds up across EarnX\n\n## 💼 **Ask me things like:**\n• \"Show me bounties I can do this week\"  \n• \"What freelance gigs are best for my skills?\"  \n• \"Where can I earn the fastest right now?\"  \n• \"Summarize all opportunities live on EarnX\"\n\n**💡 Pro Tip:** Use the quick action buttons below to jump straight to jobs, bounties, or freelance gigs and I’ll guide you from there.\n\nWhat do you want to work on today?",
       role: "assistant",
       timestamp: new Date(),
     },
@@ -377,8 +377,8 @@ export function Chatbot() {
                     />
                   </motion.div>
                   <div>
-                    <div className="flex items-center gap-2">
-                      <span className="font-thin text-xl text-white">Web3 Assistant</span>
+                  <div className="flex items-center gap-2">
+                    <span className="font-thin text-xl text-white">EarnX Freelance Assistant</span>
                       <motion.div
                         animate={{ rotate: [0, 360] }}
                         transition={{ duration: 8, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}

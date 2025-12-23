@@ -94,8 +94,8 @@ export default function Dashboard() {
 
   const opportunityCards = [
     {
-      title: "Bounty First Hiring",
-      description: "Compete for jobs with upfront payment guarantee and skill-based selection.",
+      title: "Bounties",
+      description: "Win competitive tasks with escrowed rewards and transparent deadlines.",
       icon: Trophy,
       features: ["Upfront payment guarantee", "Skill-based competition", "Direct rewards"],
       status: "5 Active",
@@ -103,8 +103,8 @@ export default function Dashboard() {
       gradient: "from-emerald-500 to-lime-400",
     },
     {
-      title: "Freelance GIG",
-      description: "Secure projects with escrow protection and verified work completion.",
+      title: "Freelance Gigs",
+      description: "Secure client projects with on-chain escrow and milestone-based payouts.",
       icon: Briefcase,
       features: ["Escrow protection", "Work verification", "Video meetings"],
       status: "8 Available",
@@ -113,7 +113,7 @@ export default function Dashboard() {
     },
     {
       title: "Staked Commitments",
-      description: "Build trust through token staking with commitment guarantees.",
+      description: "Stake to signal seriousness and reduce ghosting on both sides of a project.",
       icon: Shield,
       features: ["Token staking", "Trust mechanism", "Commitment guarantee"],
       status: "3 Pending",
@@ -121,8 +121,8 @@ export default function Dashboard() {
       gradient: "from-blue-500 to-blue-700",
     },
     {
-      title: "Web3 Jobs",
-      description: "Explore premium Web3 opportunities across various domains.",
+      title: "Off‑chain Jobs",
+      description: "Explore premium remote roles that complement your on-chain EarnX profile.",
       icon: Users,
       features: ["Premium positions", "Network growth", "Career advancement"],
       status: "100+ Jobs",
@@ -156,16 +156,17 @@ export default function Dashboard() {
               transition={{ duration: 0.7 }}
             >
               <AuroraText colors={["#22C55E", "#4ADE80", "#BBF7D0", "#A3E635"]}>
-                <span className="text-transparent">EarnX Console</span>
+                <span className="text-transparent">EarnX Freelance Console</span>
               </AuroraText>
             </motion.h1>
             <motion.p
-              className="text-gray-300/80 text-xl font-light"
+              className="text-gray-300/80 text-xl font-light max-w-2xl"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.7 }}
             >
-              Monitor your AI app positions, on-chain work history, and earning routes across the EarnX ecosystem.
+              Track your gigs, bounties, and payouts across EarnX—your command center for earning in the on-chain
+              freelance economy.
             </motion.p>
           </div>
 

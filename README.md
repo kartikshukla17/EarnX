@@ -1,8 +1,8 @@
-# 🚀 Fork Work
+# 🚀 EarnX – Web3 Freelance, Gigs & Bounties
 
-> **The only cut taken? Your gas fees.**
+> **A Web3-native home for freelancers in a $1.5T+ market.**
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-fork--wrok.vercel.app-blue?style=for-the-badge&logo=vercel)](https://fork-wrok.vercel.app/)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-earnx.vercel.app-blue?style=for-the-badge&logo=vercel)](https://earnx.vercel.app/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](LICENSE)
 [![Next.js](https://img.shields.io/badge/Next.js-15.3.4-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
 [![Solidity](https://img.shields.io/badge/Solidity-0.8.19-363636?style=for-the-badge&logo=solidity)](https://soliditylang.org/)
@@ -11,7 +11,7 @@
 
 
 
-A revolutionary Web3 platform that connects talented freelancers with clients through smart contracts, eliminating traditional platform fees and middlemen. Built on blockchain technology, Fork Work ensures transparency, security, and fair compensation for all parties involved.
+EarnX is a Web3-native platform that connects freelancers with on-chain gigs, bounties, and projects in the **$1.5T+ global freelance economy**. Smart-contract escrow, programmable trust, and transparent rewards replace Web2 middlemen and opaque platforms, so more value flows directly between clients and talent.
 
 ## ✨ Features
 
