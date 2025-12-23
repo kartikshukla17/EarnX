@@ -40,7 +40,7 @@ const Hero = () => {
         >
           <Link href="/dashboard">
             <motion.button
-              className="group relative px-8 py-4 bg-gradient-to-r from-purple-600 via-blue-600 to-purple-600 text-white font-semibold rounded-lg transition-all duration-500 flex items-center gap-2 text-lg shadow-lg shadow-purple-500/30 hover:shadow-purple-500/50 hover:from-purple-500 hover:via-blue-500 hover:to-purple-500"
+              className="group relative px-8 py-4 bg-gradient-to-r from-emerald-500 via-lime-400 to-emerald-500 text-white font-semibold rounded-lg transition-all duration-500 flex items-center gap-2 text-lg shadow-lg shadow-emerald-500/30 hover:shadow-emerald-500/50 hover:from-emerald-400 hover:via-lime-300 hover:to-emerald-400"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >

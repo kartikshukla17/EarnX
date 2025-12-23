@@ -117,6 +117,7 @@ export default function PostBounty() {
   const { address, isConnected } = useWallet()
   const [currentStep, setCurrentStep] = useState<CreateStep>(CreateStep.FORM)
   const [showPreview, setShowPreview] = useState(false)
+  const [createdBountyId, setCreatedBountyId] = useState<string | null>(null)
   const [formData, setFormData] = useState<FormData>({
     name: "",
     description: "",
@@ -190,6 +191,13 @@ export default function PostBounty() {
     query: { enabled: !!address },
   })
 
+  // Read next bounty id so we know the ID that will be assigned on creation
+  const { data: nextBountyIdOnChain } = useReadContract({
+    address: BOUNTY_CONTRACT_ADDRESS,
+    abi: BOUNTY_ABI,
+    functionName: "nextBountyId",
+  })
+
   const uploadToIPFS = async (metadata: PinataMetadata): Promise<string> => {
     setUploadProgress(0)
     setError("")
@@ -251,6 +259,11 @@ export default function PostBounty() {
     if (usdtBalance && parseUnits(formData.totalReward, 6) > usdtBalance) {
       setError("Insufficient USDT balance")
       return
+    }
+
+    // Snapshot the bounty id that will be assigned on successful creation
+    if (nextBountyIdOnChain !== undefined) {
+      setCreatedBountyId(nextBountyIdOnChain.toString())
     }
 
     setCurrentStep(CreateStep.IPFS)
@@ -358,6 +371,7 @@ export default function PostBounty() {
     setIpfsUri("")
     setUploadProgress(0)
     setError("")
+    setCreatedBountyId(null)
   }
 
   const getStepProgress = () => {
@@ -599,13 +613,26 @@ export default function PostBounty() {
               >
                 <motion.button
                   onClick={resetForm}
-                  className="px-8 py-3 bg-gradient-to-r from-[#E23E6B] to-[#cc4368] text-white font-medium rounded-2xl hover:from-[#cc4368] hover:to-[#E23E6B] transition-all duration-300 shadow-lg hover:shadow-xl"
+                  className="px-8 py-3 bg-gradient-to-r from-emerald-500 to-lime-400 text-white font-medium rounded-2xl hover:from-emerald-400 hover:to-lime-300 transition-all duration-300 shadow-lg hover:shadow-xl"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
                   <Plus className="w-4 h-4 mr-2 inline" />
                   Create Another Bounty
                 </motion.button>
+
+                {createdBountyId && (
+                  <Link href={`/dashboard/bounties/${createdBountyId}`}>
+                    <motion.button
+                      className="px-8 py-3 bg-white/10 text-white font-medium rounded-2xl hover:bg-emerald-500/10 transition-all duration-300 border border-emerald-400/60"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      View This Bounty
+                    </motion.button>
+                  </Link>
+                )}
+
                 <Link href="/dashboard/bounties">
                   <motion.button
                     className="px-8 py-3 bg-white/10 text-white font-medium rounded-2xl hover:bg-white/20 transition-all duration-300 border border-white/20"

@@ -168,12 +168,12 @@ function PostGigPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          <AlertCircle className="w-12 h-12 text-[#E23E6B] mx-auto mb-4" />
+          <AlertCircle className="w-12 h-12 text-emerald-400 mx-auto mb-4" />
           <h3 className="text-xl font-thin mb-2">Connect Your Wallet</h3>
           <p className="text-gray-400 mb-6">You need to connect your wallet before you can post a new gig.</p>
           <motion.button
             onClick={() => setShowWalletModal(true)}
-            className="px-6 py-3 bg-gradient-to-r from-[#E23E6B] to-[#cc4368] rounded-2xl font-medium"
+            className="px-6 py-3 bg-gradient-to-r from-emerald-500 to-lime-400 rounded-2xl font-medium text-white hover:from-emerald-400 hover:to-lime-300 transition-all duration-300 shadow-lg hover:shadow-xl"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -198,7 +198,7 @@ function PostGigPage() {
         >
           <div>
             <h1 className="text-4xl font-thin mb-2">
-              <AuroraText colors={["#cc4368", "#e6295c", "#ffffff", "#E23E6B"]}>
+              <AuroraText colors={["#22C55E", "#4ADE80", "#BBF7D0", "#A3E635"]}>
                 <span className="text-transparent">Post a New Gig</span>
               </AuroraText>
             </h1>
@@ -208,7 +208,7 @@ function PostGigPage() {
             <WalletDisplay />
             <Link href="/dashboard/freelance">
               <motion.button
-                className="flex items-center space-x-2 px-5 py-3 bg-white/10 border border-white/20 rounded-2xl hover:bg-white/20 transition-all duration-300"
+                className="flex items-center space-x-2 px-5 py-3 bg-white/10 border border-white/20 rounded-2xl hover:bg-emerald-500/10 hover:border-emerald-400/60 transition-all duration-300"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -229,13 +229,13 @@ function PostGigPage() {
         >
           <fieldset disabled={isLoading}>
             {/* Gig Title */}
-            <FormField label="Gig Title" icon={<Briefcase className="w-4 h-4 text-gray-400" />}>
+            <FormField label="Gig Title" icon={<Briefcase className="w-4 h-4 text-emerald-400" />}>
               <input
                 type="text"
                 placeholder="e.g., Build a DeFi Staking Dashboard"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                className="w-full pl-3 pr-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-[#E23E6B] transition-colors duration-200"
+                className="w-full pl-3 pr-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-emerald-400 transition-colors duration-200"
                 required
               />
             </FormField>
@@ -250,7 +250,7 @@ function PostGigPage() {
                 placeholder="A one-sentence summary of the gig."
                 value={shortDescription}
                 onChange={(e) => setShortDescription(e.target.value)}
-                className="w-full pl-3 pr-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-[#E23E6B] transition-colors duration-200 min-h-[60px] resize-none"
+                className="w-full pl-3 pr-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-emerald-400 transition-colors duration-200 min-h-[60px] resize-none"
                 maxLength={280}
                 required
               />
@@ -267,7 +267,7 @@ function PostGigPage() {
                 placeholder="Provide a comprehensive description of the gig requirements, deliverables, and any other relevant information..."
                 value={detailedDescription}
                 onChange={(e) => setDetailedDescription(e.target.value)}
-                className="w-full pl-3 pr-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-[#E23E6B] transition-colors duration-200 min-h-[150px] resize-none"
+                className="w-full pl-3 pr-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-emerald-400 transition-colors duration-200 min-h-[150px] resize-none"
                 required
               />
             </FormField>
@@ -275,35 +275,35 @@ function PostGigPage() {
             {/* Requirements */}
             <FormField
               label="Requirements"
-              icon={<FileText className="w-4 h-4 text-blue-400" />}
+              icon={<FileText className="w-4 h-4 text-sky-400" />}
               tooltip="List each requirement on a new line"
             >
               <textarea
                 placeholder="- Experience with React and TypeScript&#10;- Knowledge of Web3 development&#10;- Portfolio of previous DeFi projects"
                 value={requirements}
                 onChange={(e) => setRequirements(e.target.value)}
-                className="w-full pl-3 pr-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-[#E23E6B] transition-colors duration-200 min-h-[100px] resize-none"
+                className="w-full pl-3 pr-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-emerald-400 transition-colors duration-200 min-h-[100px] resize-none"
               />
             </FormField>
 
             {/* Deliverables */}
             <FormField
               label="Deliverables"
-              icon={<FileText className="w-4 h-4 text-green-400" />}
+              icon={<FileText className="w-4 h-4 text-emerald-400" />}
               tooltip="List each deliverable on a new line"
             >
               <textarea
                 placeholder="- Fully functional staking dashboard&#10;- Smart contract integration&#10;- Responsive design for mobile and desktop&#10;- Documentation and deployment guide"
                 value={deliverables}
                 onChange={(e) => setDeliverables(e.target.value)}
-                className="w-full pl-3 pr-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-[#E23E6B] transition-colors duration-200 min-h-[100px] resize-none"
+                className="w-full pl-3 pr-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-emerald-400 transition-colors duration-200 min-h-[100px] resize-none"
               />
             </FormField>
 
             {/* Skills */}
             <FormField
               label="Required Skills"
-              icon={<Sparkles className="w-4 h-4 text-gray-400" />}
+              icon={<Sparkles className="w-4 h-4 text-emerald-400" />}
               tooltip="Enter skills separated by commas"
             >
               <input
@@ -311,7 +311,7 @@ function PostGigPage() {
                 placeholder="React, Solidity, Ethers.js, TypeScript"
                 value={skills}
                 onChange={(e) => setSkills(e.target.value)}
-                className="w-full pl-3 pr-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-[#E23E6B] transition-colors duration-200"
+                className="w-full pl-3 pr-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-emerald-400 transition-colors duration-200"
               />
             </FormField>
 
@@ -323,7 +323,7 @@ function PostGigPage() {
                   placeholder="e.g., 1000"
                   value={usdtAmount}
                   onChange={(e) => setUsdtAmount(e.target.value)}
-                  className="w-full pl-3 pr-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-[#E23E6B] transition-colors duration-200"
+                  className="w-full pl-3 pr-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-emerald-400 transition-colors duration-200"
                   min="0"
                   step="0.01"
                   required
@@ -341,7 +341,7 @@ function PostGigPage() {
                   placeholder="e.g., 50 (Optional)"
                   value={nativeStake}
                   onChange={(e) => setNativeStake(e.target.value)}
-                  className="w-full pl-3 pr-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-[#E23E6B] transition-colors duration-200"
+                  className="w-full pl-3 pr-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-emerald-400 transition-colors duration-200"
                   min="0"
                   step="0.01"
                 />
@@ -350,7 +350,7 @@ function PostGigPage() {
 
             <div className="grid md:grid-cols-2 gap-6">
               {/* Total Duration */}
-              <FormField label="Total Duration (Days)" icon={<Clock className="w-4 h-4 text-gray-400" />}>
+              <FormField label="Total Duration (Days)" icon={<Clock className="w-4 h-4 text-emerald-400" />}>
                 <input
                   type="number"
                   placeholder="e.g., 30"
@@ -359,7 +359,7 @@ function PostGigPage() {
                   className={`w-full pl-3 pr-4 py-3 bg-white/5 border rounded-xl text-white placeholder-gray-400 focus:outline-none transition-colors duration-200 ${
                     duration && proposalDuration && Number(proposalDuration) >= Number(duration)
                       ? "border-red-400/50 focus:border-red-400"
-                      : "border-white/20 focus:border-[#E23E6B]"
+                      : "border-white/20 focus:border-emerald-400"
                   }`}
                   min="1"
                   required
@@ -369,7 +369,7 @@ function PostGigPage() {
               {/* Proposal Duration */}
               <FormField
                 label="Proposal Duration (Days)"
-                icon={<Clock className="w-4 h-4 text-blue-400" />}
+                icon={<Clock className="w-4 h-4 text-sky-400" />}
                 tooltip="How long freelancers have to submit proposals"
               >
                 <input
@@ -380,7 +380,7 @@ function PostGigPage() {
                   className={`w-full pl-3 pr-4 py-3 bg-white/5 border rounded-xl text-white placeholder-gray-400 focus:outline-none transition-colors duration-200 ${
                     duration && proposalDuration && Number(proposalDuration) >= Number(duration)
                       ? "border-red-400/50 focus:border-red-400"
-                      : "border-white/20 focus:border-[#E23E6B]"
+                      : "border-white/20 focus:border-emerald-400"
                   }`}
                   min="1"
                   required
@@ -409,7 +409,7 @@ function PostGigPage() {
             <div className="mt-8">
               <motion.button
                 type="submit"
-                className="w-full py-4 bg-gradient-to-r from-[#E23E6B] to-[#cc4368] text-white font-medium rounded-2xl hover:from-[#cc4368] hover:to-[#E23E6B] transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full py-4 bg-gradient-to-r from-emerald-500 to-lime-400 text-white font-medium rounded-2xl hover:from-emerald-400 hover:to-lime-300 transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
                 whileHover={{ scale: isLoading ? 1 : 1.02 }}
                 whileTap={{ scale: isLoading ? 1 : 0.98 }}
                 disabled={isLoading}
@@ -425,7 +425,7 @@ function PostGigPage() {
                   href={`https://opencampus-codex.blockscout.com/tx/${hash}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[#E23E6B] hover:underline"
+                  className="text-emerald-400 hover:underline"
                 >
                   View on Explorer
                 </a>

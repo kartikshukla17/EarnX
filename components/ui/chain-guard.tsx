@@ -101,14 +101,14 @@ export function ChainGuard({ children }: ChainGuardProps) {
             <CardContent className="space-y-4">
               <div className="text-center text-sm text-gray-400">
                 <p>Current Network: <span className="text-red-400">Chain ID {chainId}</span></p>
-                <p>Required Network: <span className="text-green-400">Ethereum Sepolia (Chain ID 11155111)</span></p>
+                <p>Required Network: <span className="text-emerald-400">Ethereum Sepolia (Chain ID 11155111)</span></p>
               </div>
 
               <div className="space-y-3">
                 <Button
                   onClick={handleSwitchChain}
                   disabled={isSwitching || isPending}
-                  className="w-full bg-[#E23E6B] hover:bg-[#E23E6B]/80 text-white"
+                  className="w-full bg-emerald-500 hover:bg-emerald-400 text-white"
                 >
                   {isSwitching || isPending ? (
                     <>

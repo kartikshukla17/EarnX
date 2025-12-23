@@ -69,8 +69,8 @@ export default function Jobs() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7 }}
             >
-              <AuroraText colors={["#cc4368", "#e6295c", "#ffffff", "#E23E6B"]}>
-                <span className="text-transparent">Web3 Jobs</span>
+              <AuroraText colors={["#22C55E", "#4ADE80", "#BBF7D0", "#A3E635"]}>
+                <span className="text-transparent">EarnX Job Feed</span>
               </AuroraText>
             </motion.h1>
             <motion.p
@@ -79,7 +79,7 @@ export default function Jobs() {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.7 }}
             >
-              Discover the latest opportunities in the Web3 space and take your career to the next level.
+              Curated Web3 and AI roles that complement your on-chain EarnX profile and contribution history.
             </motion.p>
           </div>
 
@@ -108,7 +108,7 @@ export default function Jobs() {
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-              className="w-16 h-16 border-4 border-white/20 border-t-[#E23E6B] rounded-full mb-6"
+              className="w-16 h-16 border-4 border-white/20 border-t-emerald-400 rounded-full mb-6"
             />
             <p className="text-gray-300 text-lg font-light">Loading opportunities...</p>
           </motion.div>
@@ -118,12 +118,12 @@ export default function Jobs() {
             animate={{ opacity: 1, y: 0 }}
             className="bg-white/5 backdrop-blur-md border border-white/20 rounded-3xl p-8 text-center group overflow-hidden relative"
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-white to-[#E23E6B] opacity-0 group-hover:opacity-10 transition-opacity duration-300 rounded-3xl"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-white to-emerald-400 opacity-0 group-hover:opacity-10 transition-opacity duration-300 rounded-3xl"></div>
             <div className="relative z-10">
               <p className="text-red-400 text-lg mb-6">{error}</p>
               <motion.button
                 onClick={() => window.location.reload()}
-                className="px-6 py-3 bg-gradient-to-r from-[#E23E6B] to-[#cc4368] rounded-2xl font-medium hover:from-[#cc4368] hover:to-[#E23E6B] transition-all duration-300"
+                className="px-6 py-3 bg-gradient-to-r from-emerald-500 to-lime-400 rounded-2xl font-medium hover:from-emerald-400 hover:to-lime-300 transition-all duration-300"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -147,21 +147,21 @@ export default function Jobs() {
                 className="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-8 group overflow-hidden relative hover:border-white/20 transition-all duration-500"
               >
                 {/* Gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-[#E23E6B]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-emerald-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl"></div>
 
                 {/* Glow effect */}
-                <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-[#E23E6B]/20 to-[#cc4368]/20 opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500"></div>
+                <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-emerald-500/20 to-lime-400/20 opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500"></div>
 
                 <div className="relative z-10">
                   {/* Header with icon */}
                   <div className="flex items-center justify-between mb-6">
                     <div className="w-12 h-12 bg-gradient-to-br from-white/10 to-white/5 rounded-2xl flex items-center justify-center border border-white/10 group-hover:border-white/20 transition-colors duration-300">
-                      <Briefcase className="h-6 w-6 text-[#E23E6B]" />
+                      <Briefcase className="h-6 w-6 text-emerald-400" />
                     </div>
                   </div>
 
                   {/* Job Title */}
-                  <h3 className="font-semibold text-xl mb-3 line-clamp-2 text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-[#E23E6B] transition-all duration-300">
+                  <h3 className="font-semibold text-xl mb-3 line-clamp-2 text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-emerald-400 transition-all duration-300">
                     {job.title}
                   </h3>
 
@@ -170,14 +170,14 @@ export default function Jobs() {
 
                   {/* Location */}
                   <div className="flex items-center gap-2 mb-6 p-3 bg-white/5 rounded-2xl border border-white/10">
-                    <MapPin className="h-4 w-4 text-[#E23E6B]" />
+                    <MapPin className="h-4 w-4 text-emerald-400" />
                     <span className="text-gray-300 text-sm">{job.location}</span>
                   </div>
 
                   {/* Apply Button */}
                   <Link href={job.apply_url} target="_blank" rel="noopener noreferrer">
                     <motion.button
-                      className="w-full py-4 bg-gradient-to-r from-[#E23E6B] to-[#cc4368] text-white font-medium rounded-2xl hover:from-[#cc4368] hover:to-[#E23E6B] transition-all duration-300 shadow-lg hover:shadow-xl group/btn relative overflow-hidden"
+                      className="w-full py-4 bg-gradient-to-r from-emerald-500 to-lime-400 text-white font-medium rounded-2xl hover:from-emerald-400 hover:to-lime-300 transition-all duration-300 shadow-lg hover:shadow-xl group/btn relative overflow-hidden"
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                     >

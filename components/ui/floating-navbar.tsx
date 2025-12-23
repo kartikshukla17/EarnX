@@ -102,7 +102,7 @@ export const FloatingNav = ({
               <motion.a
                 key={`link=${idx}`}
                 href={navItem.link}
-                className="relative text-gray-400 items-center flex space-x-1 hover:text-white transition-colors text-sm font-medium"
+                className="relative text-gray-400 items-center flex space-x-1 hover:text-emerald-300 transition-colors text-sm font-medium"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -118,7 +118,7 @@ export const FloatingNav = ({
                 href={social.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white transition-colors"
+                className="text-gray-400 hover:text-emerald-300 transition-colors"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -134,7 +134,7 @@ export const FloatingNav = ({
             ) : (
               <motion.a
                 href="/dashboard"
-                className="px-4 py-2 bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold rounded-lg text-sm hover:from-purple-500 hover:to-blue-500 transition-all flex items-center gap-2"
+                className="px-4 py-2 bg-gradient-to-r from-emerald-500 to-lime-400 text-white font-semibold rounded-lg text-sm hover:from-emerald-400 hover:to-lime-300 transition-all flex items-center gap-2"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >

@@ -66,7 +66,7 @@ export default function StakedCommitments() {
       {/* Main Content - Centered */}
       <div className="max-w-4xl mx-auto text-center relative z-10 flex items-center justify-center min-h-[calc(100vh-200px)]">
         {/* Background Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-[#E23E6B]/10 opacity-50 rounded-3xl blur-md"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-emerald-400/10 opacity-50 rounded-3xl blur-md"></div>
 
         <div className="relative z-10">
           {/* Header */}
@@ -84,8 +84,8 @@ export default function StakedCommitments() {
               variants={itemVariants}
               custom={0}
             >
-              <AuroraText colors={["#cc4368", "#e6295c", "#ffffff", "#E23E6B"]}>
-                <span className="text-transparent">Staked Commitments</span>
+              <AuroraText colors={["#22C55E", "#4ADE80", "#BBF7D0", "#A3E635"]}>
+                <span className="text-transparent">EarnX Staked Commitments</span>
               </AuroraText>
             </motion.h1>
             <motion.p
@@ -93,7 +93,7 @@ export default function StakedCommitments() {
               variants={itemVariants}
               custom={1}
             >
-              Coming Soon
+              Coming Soon – stake into AI workstreams and job commitments with programmable slashing and trust.
             </motion.p>
           </motion.div>
 
@@ -111,7 +111,7 @@ export default function StakedCommitments() {
                 variants={itemVariants}
                 custom={index + 2}
               >
-                <div className="w-2 h-2 bg-[#E23E6B]/70 rounded-full mr-3"></div>
+                <div className="w-2 h-2 bg-emerald-400/70 rounded-full mr-3"></div>
                 {feature}
               </motion.li>
             ))}

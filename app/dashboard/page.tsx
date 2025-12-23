@@ -86,10 +86,10 @@ export default function Dashboard() {
   }
 
   const statsData = [
-    { label: "Reputation Score", value: "8.5", icon: Star, color: "from-[#E23E6B] to-[#cc4368]" },
-    { label: "Active Bounties", value: "12", icon: Target, color: "from-purple-500 to-purple-700" },
-    { label: "Completed Gigs", value: "34", icon: Award, color: "from-blue-500 to-blue-700" },
-    { label: "Total Earnings", value: "$2.4K", icon: DollarSign, color: "from-green-500 to-green-700" },
+    { label: "Reputation Score", value: "8.5", icon: Star, color: "from-emerald-400 to-lime-400" },
+    { label: "Active Bounties", value: "12", icon: Target, color: "from-emerald-500 to-emerald-700" },
+    { label: "Completed Gigs", value: "34", icon: Award, color: "from-sky-500 to-sky-700" },
+    { label: "Total Earnings", value: "$2.4K", icon: DollarSign, color: "from-emerald-300 to-lime-300" },
   ]
 
   const opportunityCards = [
@@ -100,7 +100,7 @@ export default function Dashboard() {
       features: ["Upfront payment guarantee", "Skill-based competition", "Direct rewards"],
       status: "5 Active",
       href: "dashboard/bounties",
-      gradient: "from-[#E23E6B] to-[#cc4368]",
+      gradient: "from-emerald-500 to-lime-400",
     },
     {
       title: "Freelance GIG",
@@ -155,8 +155,8 @@ export default function Dashboard() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7 }}
             >
-              <AuroraText colors={["#cc4368", "#e6295c", "#ffffff", "#E23E6B"]}>
-                <span className="text-transparent">Web3 Career Hub</span>
+              <AuroraText colors={["#22C55E", "#4ADE80", "#BBF7D0", "#A3E635"]}>
+                <span className="text-transparent">EarnX Console</span>
               </AuroraText>
             </motion.h1>
             <motion.p
@@ -165,7 +165,7 @@ export default function Dashboard() {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.7 }}
             >
-              Your gateway to Web3 opportunities
+              Monitor your AI app positions, on-chain work history, and earning routes across the EarnX ecosystem.
             </motion.p>
           </div>
 
@@ -175,7 +175,7 @@ export default function Dashboard() {
               <WalletDisplay />
               <Link href="/">
                 <motion.button
-                  className="flex items-center space-x-3 px-6 py-3 bg-gradient-to-r from-[#E23E6B] to-[#cc4368] text-white font-medium rounded-2xl hover:from-[#cc4368] hover:to-[#E23E6B] transition-all duration-300 shadow-lg hover:shadow-xl"
+                  className="flex items-center space-x-3 px-6 py-3 bg-gradient-to-r from-emerald-500 to-lime-400 text-white font-medium rounded-2xl hover:from-emerald-400 hover:to-lime-300 transition-all duration-300 shadow-lg hover:shadow-xl"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -235,7 +235,7 @@ export default function Dashboard() {
             transition={{ delay: 0.3, duration: 0.5 }}
           >
             <div className="text-center max-w-md mx-auto">
-              <div className="w-20 h-20 bg-gradient-to-r from-[#E23E6B] to-[#cc4368] rounded-3xl flex items-center justify-center mx-auto mb-6">
+                <div className="w-20 h-20 bg-gradient-to-r from-emerald-500 to-lime-400 rounded-3xl flex items-center justify-center mx-auto mb-6">
                 <Github className="w-10 h-10 text-white" />
               </div>
               <h2 className={cn("text-2xl font-thin mb-4", poppins.className)}>
@@ -252,7 +252,7 @@ export default function Dashboard() {
                     value={githubUsername}
                     onChange={(e) => setGithubUsername(e.target.value)}
                     placeholder="Enter GitHub username"
-                    className="w-full px-6 py-4 bg-white/10 border border-white/20 rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:border-[#E23E6B] focus:ring-2 focus:ring-[#E23E6B]/20 transition-all duration-300"
+                    className="w-full px-6 py-4 bg-white/10 border border-white/20 rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20 transition-all duration-300"
                     required
                   />
                 </div>
@@ -260,7 +260,7 @@ export default function Dashboard() {
                 <motion.button
                   type="submit"
                   disabled={isLoading || !githubUsername.trim()}
-                  className="w-full px-6 py-4 bg-gradient-to-r from-[#E23E6B] to-[#cc4368] text-white font-medium rounded-2xl hover:from-[#cc4368] hover:to-[#E23E6B] transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full px-6 py-4 bg-gradient-to-r from-emerald-500 to-lime-400 text-white font-medium rounded-2xl hover:from-emerald-400 hover:to-lime-300 transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
                   whileHover={{ scale: isLoading ? 1 : 1.02 }}
                   whileTap={{ scale: isLoading ? 1 : 0.98 }}
                 >
@@ -309,7 +309,7 @@ export default function Dashboard() {
                 </div>
                 <div className="flex items-center gap-4">
                   <div className="text-right">
-                    <div className="text-2xl font-thin text-[#E23E6B] mb-1">365</div>
+                    <div className="text-2xl font-thin text-emerald-400 mb-1">365</div>
                     <div className="text-xs text-gray-400">Days tracked</div>
                   </div>
                   <button
@@ -383,14 +383,14 @@ export default function Dashboard() {
                       >
                         <IconComponent className="w-8 h-8 text-white" strokeWidth={1.5} />
                       </div>
-                      <span className="text-sm bg-gradient-to-r from-[#E23E6B] to-white bg-clip-text text-transparent font-medium px-4 py-2 bg-white/10 rounded-full border border-white/20">
+                  <span className="text-sm bg-gradient-to-r from-emerald-400 to-white bg-clip-text text-transparent font-medium px-4 py-2 bg-white/10 rounded-full border border-white/20">
                         {card.status}
                       </span>
                     </div>
 
                     <h3
                       className={cn(
-                        "text-2xl font-thin mb-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-t group-hover:from-white group-hover:to-[#E23E6B] transition-colors duration-300",
+                        "text-2xl font-thin mb-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-t group-hover:from-white group-hover:to-emerald-400 transition-colors duration-300",
                         poppins.className,
                       )}
                     >
@@ -407,7 +407,7 @@ export default function Dashboard() {
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: 0.3 + featureIndex * 0.1, duration: 0.5 }}
                         >
-                          <div className="w-2 h-2 bg-[#E23E6B] rounded-full mr-4"></div>
+                          <div className="w-2 h-2 bg-emerald-400 rounded-full mr-4"></div>
                           {feature}
                         </motion.li>
                       ))}

@@ -130,10 +130,10 @@ function BountyCard({ bountyId, index }: BountyCardProps) {
       whileHover="hover"
     >
       {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-[#E23E6B]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-emerald-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl"></div>
 
       {/* Glow effect */}
-      <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-[#E23E6B]/20 to-[#cc4368]/20 opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500"></div>
+      <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-emerald-500/20 to-lime-400/20 opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500"></div>
 
       <div className="relative z-10">
         {/* Header with category and status */}
@@ -155,7 +155,7 @@ function BountyCard({ bountyId, index }: BountyCardProps) {
         </div>
 
         {/* Title */}
-        <h3 className="font-semibold text-xl mb-3 line-clamp-2 text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-[#E23E6B] transition-all duration-300">
+        <h3 className="font-semibold text-xl mb-3 line-clamp-2 text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-emerald-400 transition-all duration-300">
           {metadata?.name || `Bounty #${bountyId}`}
         </h3>
 
@@ -190,7 +190,7 @@ function BountyCard({ bountyId, index }: BountyCardProps) {
 
         {/* Creator info */}
         <div className="flex items-center gap-2 mb-6 p-3 bg-white/5 rounded-2xl border border-white/10">
-          <div className="w-8 h-8 bg-gradient-to-br from-[#E23E6B] to-[#cc4368] rounded-full flex items-center justify-center">
+          <div className="w-8 h-8 bg-gradient-to-br from-emerald-500 to-lime-400 rounded-full flex items-center justify-center">
             <User className="w-4 h-4 text-white" />
           </div>
           <div>
@@ -204,7 +204,7 @@ function BountyCard({ bountyId, index }: BountyCardProps) {
         {/* Enhanced Action Button */}
         <Link href={`/dashboard/bounties/${bountyId}`}>
           <motion.button
-            className="w-full py-4 bg-gradient-to-r from-[#E23E6B] to-[#cc4368] text-white font-medium rounded-2xl hover:from-[#cc4368] hover:to-[#E23E6B] transition-all duration-300 shadow-lg hover:shadow-xl group/btn relative overflow-hidden"
+            className="w-full py-4 bg-gradient-to-r from-emerald-500 to-lime-400 text-white font-medium rounded-2xl hover:from-emerald-400 hover:to-lime-300 transition-all duration-300 shadow-lg hover:shadow-xl group/btn relative overflow-hidden"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
@@ -265,11 +265,11 @@ function Bounties() {
       label: "Total Bounties",
       value: nextBountyId ? (Number(nextBountyId) - 1).toString() : "0",
       icon: Trophy,
-      color: "from-[#E23E6B] to-[#cc4368]",
+      color: "from-emerald-500 to-lime-400",
     },
-    { label: "Active Bounties", value: "8", icon: CheckCircle, color: "from-green-500 to-green-700" },
-    { label: "Total Rewards", value: "$12.5K", icon: DollarSign, color: "from-yellow-500 to-yellow-700" },
-    { label: "Participants", value: "156", icon: User, color: "from-blue-500 to-blue-700" },
+    { label: "Active Bounties", value: "8", icon: CheckCircle, color: "from-emerald-400 to-emerald-600" },
+    { label: "Total Rewards", value: "$12.5K", icon: DollarSign, color: "from-lime-400 to-lime-500" },
+    { label: "Participants", value: "156", icon: User, color: "from-sky-500 to-sky-700" },
   ]
 
   return (
@@ -289,8 +289,8 @@ function Bounties() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7 }}
             >
-              <AuroraText colors={["#cc4368", "#e6295c", "#ffffff", "#E23E6B"]}>
-                <span className="text-transparent">Bounty Marketplace</span>
+              <AuroraText colors={["#22C55E", "#4ADE80", "#BBF7D0", "#A3E635"]}>
+                <span className="text-transparent">EarnX Bounties Exchange</span>
               </AuroraText>
             </motion.h1>
             <motion.p
@@ -299,7 +299,7 @@ function Bounties() {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.7 }}
             >
-              Discover and participate in Web3 bounties
+              Compete, stake, and settle bounty work for autonomous AI and Web3 projects with on-chain guarantees.
             </motion.p>
           </div>
 
@@ -307,8 +307,8 @@ function Bounties() {
             <div className="flex items-center gap-4">
               <WalletDisplay />
               <Link href="/dashboard">
-                <motion.button
-                  className="flex items-center space-x-3 px-6 py-3 bg-white/10 border border-white/20 text-white font-medium rounded-2xl hover:bg-white/20 transition-all duration-300 shadow-lg hover:shadow-xl"
+              <motion.button
+                className="flex items-center space-x-3 px-6 py-3 bg-white/10 border border-white/20 text-white font-medium rounded-2xl hover:bg-emerald-500/10 hover:border-emerald-400/60 transition-all duration-300 shadow-lg hover:shadow-xl"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -319,7 +319,7 @@ function Bounties() {
 
               <Link href="/dashboard/bounties/post">
                 <motion.button
-                  className="flex items-center space-x-3 px-8 py-4 bg-gradient-to-r from-[#E23E6B] to-[#cc4368] text-white font-medium rounded-3xl hover:from-[#cc4368] hover:to-[#E23E6B] transition-all duration-300 shadow-lg hover:shadow-xl"
+                  className="flex items-center space-x-3 px-8 py-4 bg-gradient-to-r from-emerald-500 to-lime-400 text-white font-medium rounded-3xl hover:from-emerald-400 hover:to-lime-300 transition-all duration-300 shadow-lg hover:shadow-xl"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -377,7 +377,7 @@ function Bounties() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.5 }}
         >
-          <div className="absolute inset-0 bg-gradient-to-br from-white to-[#E23E6B] opacity-0 group-hover:opacity-5 transition-opacity duration-300 rounded-3xl"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-white to-emerald-400 opacity-0 group-hover:opacity-5 transition-opacity duration-300 rounded-3xl"></div>
           <div className="relative z-10">
             <div className="flex flex-col lg:flex-row gap-4">
               {/* Search */}
@@ -388,35 +388,59 @@ function Bounties() {
                   placeholder="Search bounties..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 bg-white/5 border border-white/20 rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:border-[#E23E6B] transition-colors duration-200"
+                  className="w-full pl-10 pr-4 py-3 bg-white/5 border border-white/20 rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:border-emerald-400 transition-colors duration-200"
                 />
               </div>
 
               {/* Category Filter */}
-              <select
-                value={selectedCategory}
-                onChange={(e) => setSelectedCategory(e.target.value)}
-                className="px-4 py-3 bg-white/5 border border-white/20 rounded-2xl text-white focus:outline-none focus:border-[#E23E6B] transition-colors duration-200"
-              >
-                <option value="all">All Categories</option>
-                {categories.map((category, index) => (
-                  <option key={index} value={index.toString()}>
-                    {categoryEmojis[index]} {category}
+              <div className="relative">
+                <select
+                  value={selectedCategory}
+                  onChange={(e) => setSelectedCategory(e.target.value)}
+                  className="appearance-none px-4 py-3 bg-black border border-emerald-500/70 rounded-2xl text-sm text-white pr-8 focus:outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/30 transition-colors duration-200"
+                >
+                  <option value="all" className="bg-black text-white">
+                    All Categories
                   </option>
-                ))}
-              </select>
+                  {categories.map((category, index) => (
+                    <option
+                      key={index}
+                      value={index.toString()}
+                      className="bg-black text-white"
+                    >
+                      {categoryEmojis[index]} {category}
+                    </option>
+                  ))}
+                </select>
+                <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center">
+                  <span className="text-emerald-400 text-xs">▼</span>
+                </div>
+              </div>
 
               {/* Status Filter */}
-              <select
-                value={selectedStatus}
-                onChange={(e) => setSelectedStatus(e.target.value)}
-                className="px-4 py-3 bg-white/5 border border-white/20 rounded-2xl text-white focus:outline-none focus:border-[#E23E6B] transition-colors duration-200"
-              >
-                <option value="all">All Status</option>
-                <option value="0">Open</option>
-                <option value="1">Closed</option>
-                <option value="2">Cancelled</option>
-              </select>
+              <div className="relative">
+                <select
+                  value={selectedStatus}
+                  onChange={(e) => setSelectedStatus(e.target.value)}
+                  className="appearance-none px-4 py-3 bg-black border border-emerald-500/70 rounded-2xl text-sm text-white pr-8 focus:outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/30 transition-colors duration-200"
+                >
+                  <option value="all" className="bg-black text-white">
+                    All Status
+                  </option>
+                  <option value="0" className="bg-black text-white">
+                    Open
+                  </option>
+                  <option value="1" className="bg-black text-white">
+                    Closed
+                  </option>
+                  <option value="2" className="bg-black text-white">
+                    Cancelled
+                  </option>
+                </select>
+                <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center">
+                  <span className="text-emerald-400 text-xs">▼</span>
+                </div>
+              </div>
             </div>
           </div>
         </motion.div>
@@ -445,7 +469,7 @@ function Bounties() {
             <p className="text-gray-400 mb-6">Be the first to create a bounty on the platform!</p>
             <Link href="/dashboard/bounties/post">
               <motion.button
-                className="px-6 py-3 bg-gradient-to-r from-[#E23E6B] to-[#cc4368] rounded-2xl font-medium hover:from-[#cc4368] hover:to-[#E23E6B] transition-all duration-300"
+                className="px-6 py-3 bg-gradient-to-r from-emerald-500 to-lime-400 rounded-2xl font-medium hover:from-emerald-400 hover:to-lime-300 transition-all duration-300"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >

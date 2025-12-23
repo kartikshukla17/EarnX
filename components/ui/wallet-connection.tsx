@@ -248,7 +248,7 @@ export const WalletConnection = () => {
             transition={{ duration: 0.4, ease: "easeOut" }}
           >
             <ShimmerButton onClick={() => setShowWalletModal(true)} disabled={isConnecting} className="relative">
-              <BorderBeam duration={8} colorFrom="#E23E6B" size={40} colorTo="#8c2744" />
+              <BorderBeam duration={8} colorFrom="#22C55E" size={40} colorTo="#14532d" />
               <div className="flex items-center space-x-2">
                 {isConnecting ? (
                   <motion.div

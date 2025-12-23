@@ -137,10 +137,10 @@ function GigCard({ gigId, index }: GigCardProps) {
       whileHover="hover"
     >
       {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-[#E23E6B]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-emerald-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl"></div>
 
       {/* Glow effect */}
-      <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-[#E23E6B]/20 to-[#cc4368]/20 opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500"></div>
+      <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-emerald-500/20 to-lime-400/20 opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500"></div>
 
       <div className="relative z-10">
         {/* Header with status */}
@@ -160,7 +160,7 @@ function GigCard({ gigId, index }: GigCardProps) {
         </div>
 
         {/* Title */}
-        <h3 className="font-semibold text-xl mb-3 line-clamp-2 text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-[#E23E6B] transition-all duration-300">
+        <h3 className="font-semibold text-xl mb-3 line-clamp-2 text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-emerald-400 transition-all duration-300">
           {metadata?.title || gigDetails.title || `Gig #${gigId}`}
         </h3>
 
@@ -230,7 +230,7 @@ function GigCard({ gigId, index }: GigCardProps) {
 
         {/* Client info */}
         <div className="flex items-center gap-2 mb-6 p-3 bg-white/5 rounded-2xl border border-white/10">
-          <div className="w-8 h-8 bg-gradient-to-br from-[#E23E6B] to-[#cc4368] rounded-full flex items-center justify-center">
+          <div className="w-8 h-8 bg-gradient-to-br from-emerald-500 to-lime-400 rounded-full flex items-center justify-center">
             <User className="w-4 h-4 text-white" />
           </div>
           <div>
@@ -244,7 +244,7 @@ function GigCard({ gigId, index }: GigCardProps) {
         {/* Enhanced Action Button */}
         <Link href={`/dashboard/freelance/${gigId}`}>
           <motion.button
-            className="w-full py-4 bg-gradient-to-r from-[#E23E6B] to-[#cc4368] text-white font-medium rounded-2xl hover:from-[#cc4368] hover:to-[#E23E6B] transition-all duration-300 shadow-lg hover:shadow-xl group/btn relative overflow-hidden"
+            className="w-full py-4 bg-gradient-to-r from-emerald-500 to-lime-400 text-white font-medium rounded-2xl hover:from-emerald-400 hover:to-lime-300 transition-all duration-300 shadow-lg hover:shadow-xl group/btn relative overflow-hidden"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
@@ -303,11 +303,11 @@ function FreelancePage() {
       label: "Total Gigs",
       value: gigCount ? Number(gigCount).toString() : "0",
       icon: Briefcase,
-      color: "from-[#E23E6B] to-[#cc4368]",
+      color: "from-emerald-500 to-lime-400",
     },
-    { label: "Active Gigs", value: "12", icon: CheckCircle, color: "from-green-500 to-green-700" },
-    { label: "Total Value", value: "$25.8K", icon: DollarSign, color: "from-yellow-500 to-yellow-700" },
-    { label: "Freelancers", value: "89", icon: User, color: "from-blue-500 to-blue-700" },
+    { label: "Active Gigs", value: "12", icon: CheckCircle, color: "from-emerald-400 to-emerald-600" },
+    { label: "Total Value", value: "$25.8K", icon: DollarSign, color: "from-lime-400 to-lime-500" },
+    { label: "Freelancers", value: "89", icon: User, color: "from-sky-500 to-sky-700" },
   ]
 
   return (
@@ -327,8 +327,8 @@ function FreelancePage() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7 }}
             >
-              <AuroraText colors={["#cc4368", "#e6295c", "#ffffff", "#E23E6B"]}>
-                <span className="text-transparent">Freelance Marketplace</span>
+              <AuroraText colors={["#22C55E", "#4ADE80", "#BBF7D0", "#A3E635"]}>
+                <span className="text-transparent">EarnX Freelance Desk</span>
               </AuroraText>
             </motion.h1>
             <motion.p
@@ -337,7 +337,7 @@ function FreelancePage() {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.7 }}
             >
-              Connect with talented freelancers and exciting projects
+              Escrow-protected gigs and AI-native workstreams, all settled and reputationally tracked on EarnX.
             </motion.p>
           </div>
 
@@ -356,8 +356,8 @@ function FreelancePage() {
               </Link>
 
               <Link href="/dashboard/freelance/post">
-                <motion.button
-                  className="flex items-center space-x-3 px-8 py-4 bg-gradient-to-r from-[#E23E6B] to-[#cc4368] text-white font-medium rounded-3xl hover:from-[#cc4368] hover:to-[#E23E6B] transition-all duration-300 shadow-lg hover:shadow-xl"
+              <motion.button
+                className="flex items-center space-x-3 px-8 py-4 bg-gradient-to-r from-emerald-500 to-lime-400 text-white font-medium rounded-3xl hover:from-emerald-400 hover:to-lime-300 transition-all duration-300 shadow-lg hover:shadow-xl"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -415,7 +415,7 @@ function FreelancePage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.5 }}
         >
-          <div className="absolute inset-0 bg-gradient-to-br from-white to-[#E23E6B] opacity-0 group-hover:opacity-5 transition-opacity duration-300 rounded-3xl"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-white to-emerald-400 opacity-0 group-hover:opacity-5 transition-opacity duration-300 rounded-3xl"></div>
           <div className="relative z-10">
             <div className="flex flex-col lg:flex-row gap-4">
               {/* Search */}
@@ -426,19 +426,19 @@ function FreelancePage() {
                   placeholder="Search gigs by title, skills, or description..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 bg-white/5 border border-white/20 rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:border-[#E23E6B] transition-colors duration-200"
+                  className="w-full pl-10 pr-4 py-3 bg-white/5 border border-white/20 rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:border-emerald-400 transition-colors duration-200"
                 />
               </div>
 
               {/* Filter buttons */}
               <div className="flex gap-2">
-                <button className="px-4 py-3 bg-white/5 border border-white/20 rounded-2xl text-white hover:border-[#E23E6B] transition-colors duration-200">
+                <button className="px-4 py-3 bg-white/5 border border-white/20 rounded-2xl text-white hover:border-emerald-400 transition-colors duration-200">
                   All Gigs
                 </button>
-                <button className="px-4 py-3 bg-white/5 border border-white/20 rounded-2xl text-white hover:border-[#E23E6B] transition-colors duration-200">
+                <button className="px-4 py-3 bg-white/5 border border-white/20 rounded-2xl text-white hover:border-emerald-400 transition-colors duration-200">
                   Open
                 </button>
-                <button className="px-4 py-3 bg-white/5 border border-white/20 rounded-2xl text-white hover:border-[#E23E6B] transition-colors duration-200">
+                <button className="px-4 py-3 bg-white/5 border border-white/20 rounded-2xl text-white hover:border-emerald-400 transition-colors duration-200">
                   In Progress
                 </button>
               </div>
@@ -470,7 +470,7 @@ function FreelancePage() {
             <p className="text-gray-400 mb-6">Be the first to post a gig on the platform!</p>
             <Link href="/dashboard/freelance/post">
               <motion.button
-                className="px-6 py-3 bg-gradient-to-r from-[#E23E6B] to-[#cc4368] rounded-2xl font-medium hover:from-[#cc4368] hover:to-[#E23E6B] transition-all duration-300"
+                className="px-6 py-3 bg-gradient-to-r from-emerald-500 to-lime-400 rounded-2xl font-medium hover:from-emerald-400 hover:to-lime-300 transition-all duration-300"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -488,16 +488,16 @@ function FreelancePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8, duration: 0.5 }}
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-white to-[#E23E6B] opacity-0 group-hover:opacity-10 transition-opacity duration-300 rounded-3xl"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-white to-emerald-400 opacity-0 group-hover:opacity-10 transition-opacity duration-300 rounded-3xl"></div>
             <div className="relative z-10">
-              <AlertCircle className="w-12 h-12 text-[#E23E6B] mx-auto mb-4" />
+              <AlertCircle className="w-12 h-12 text-emerald-400 mx-auto mb-4" />
               <h3 className={cn("text-xl font-thin mb-2", poppins.className)}>Connect Your Wallet</h3>
               <p className="text-gray-400 mb-6">
                 Connect your wallet to post gigs, submit proposals, and participate in the freelance marketplace.
               </p>
               <motion.button
                 onClick={() => setShowWalletModal(true)}
-                className="px-6 py-3 bg-gradient-to-r from-[#E23E6B] to-[#cc4368] rounded-2xl font-medium hover:from-[#cc4368] hover:to-[#E23E6B] transition-all duration-300"
+                className="px-6 py-3 bg-gradient-to-r from-emerald-500 to-lime-400 rounded-2xl font-medium hover:from-emerald-400 hover:to-lime-300 transition-all duration-300"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
