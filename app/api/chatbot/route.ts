@@ -10,12 +10,12 @@ async function fetchOpportunities() {
     const response = await fetch(`${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/api/opportunities`, {
       next: { revalidate: 300 }, // Cache for 5 minutes
     });
-    
+
     if (!response.ok) {
       console.error('Failed to fetch opportunities:', response.status);
       return null;
     }
-    
+
     return await response.json();
   } catch (error) {
     console.error('Error fetching opportunities:', error);
@@ -25,9 +25,9 @@ async function fetchOpportunities() {
 
 function formatOpportunitiesData(opportunities: any) {
   if (!opportunities) return '';
-  
+
   let formattedData = '\n\n🎯 **CURRENT OPPORTUNITIES** 🎯\n';
-  
+
   // Format jobs
   if (opportunities.jobs && opportunities.jobs.length > 0) {
     formattedData += `\n📋 **JOBS** (${opportunities.jobs.length} available)\n`;
@@ -40,7 +40,7 @@ function formatOpportunitiesData(opportunities: any) {
       formattedData += `🔗 **Apply:** ${job.apply_url}\n`;
     });
   }
-  
+
   // Format bounties
   if (opportunities.bounties && opportunities.bounties.length > 0) {
     formattedData += `\n\n🏆 **ACTIVE BOUNTIES** (${opportunities.bounties.length} available)\n`;
@@ -55,7 +55,7 @@ function formatOpportunitiesData(opportunities: any) {
       formattedData += `📂 **Category:** ${getBountyCategory(bounty.category)}\n`;
     });
   }
-  
+
   // Format freelance gigs
   if (opportunities.freelanceGigs && opportunities.freelanceGigs.length > 0) {
     formattedData += `\n\n💼 **FREELANCE GIGS** (${opportunities.freelanceGigs.length} available)\n`;
@@ -69,7 +69,7 @@ function formatOpportunitiesData(opportunities: any) {
       formattedData += `🛠️ **Skills:** ${gig.skills?.slice(0, 3).join(', ') || 'N/A'}\n`;
     });
   }
-  
+
   return formattedData;
 }
 
@@ -81,26 +81,26 @@ function getBountyCategory(category: number): string {
 function prettifyResponse(response: string): string {
   // Add emojis and formatting to common patterns
   let prettified = response;
-  
+
   // Add section headers with emojis
   prettified = prettified.replace(/Jobs:/gi, '📋 **Jobs:**');
   prettified = prettified.replace(/Bounties:/gi, '🏆 **Bounties:**');
   prettified = prettified.replace(/Freelance:/gi, '💼 **Freelance:**');
   prettified = prettified.replace(/Opportunities:/gi, '🎯 **Opportunities:**');
-  
+
   // Add bullet points with emojis
   prettified = prettified.replace(/•/g, '✨');
   prettified = prettified.replace(/\*/g, '✨');
-  
+
   // Add emphasis to important terms
   prettified = prettified.replace(/(\d+)\s*(jobs?|bounties?|gigs?)/gi, '**$1 $2**');
   prettified = prettified.replace(/\$(\d+)/g, '💰 **$$1**');
-  
+
   // Add separators for better readability
   if (prettified.includes('📋') || prettified.includes('🏆') || prettified.includes('💼')) {
     prettified = prettified.replace(/(📋|🏆|💼)/g, '\n\n$1');
   }
-  
+
   return prettified;
 }
 
@@ -148,7 +148,7 @@ Always provide practical, actionable advice. Be encouraging and supportive. When
 
     // Build conversation context
     let conversationContext = enhancedSystemPrompt + '\n\n';
-    
+
     if (history && history.length > 0) {
       // Add recent conversation history (last 10 messages to stay within context limits)
       const recentHistory = history.slice(-10);
@@ -186,7 +186,7 @@ Always provide practical, actionable advice. Be encouraging and supportive. When
   } catch (error) {
     console.error('Chatbot API error:', error);
     return NextResponse.json(
-      { 
+      {
         error: 'Failed to process message',
         response: "😔 I'm sorry, I'm having trouble processing your request right now. Please try again in a moment."
       },

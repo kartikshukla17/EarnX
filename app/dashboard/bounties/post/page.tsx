@@ -29,9 +29,10 @@ import {
   ExternalLink,
 } from "lucide-react"
 import Link from "next/link"
-import { useWaitForTransactionReceipt, useReadContract } from "wagmi"
+import { useWaitForTransactionReceipt, useReadContract, useAccount } from "wagmi"
 import { useSafeWriteContract } from "@/hooks/use-safe-write-contract"
 import { parseUnits, formatUnits } from "viem"
+import { sepolia } from "viem/chains"
 import { BOUNTY_CONTRACT_ADDRESS, BOUNTY_ABI, USDT_TOKEN_ADDRESS, ERC20_ABI } from "@/lib/contracts"
 import { uploadToPinata, type PinataMetadata } from "@/lib/pinata"
 import { useWallet } from "@/contexts/wallet-context"
@@ -172,6 +173,18 @@ export default function PostBounty() {
     hash: createHash,
   })
 
+  // Debug logging for state changes
+  useEffect(() => {
+    console.log("📊 State update:", {
+      currentStep,
+      isCreatePending,
+      isCreateConfirming,
+      isCreateSuccess,
+      createHash,
+      createError: createError?.message,
+    })
+  }, [currentStep, isCreatePending, isCreateConfirming, isCreateSuccess, createHash, createError])
+
   // Check USDT balance and allowance
   const { data: usdtBalance } = useReadContract({
     address: USDT_TOKEN_ADDRESS,
@@ -294,6 +307,8 @@ export default function PostBounty() {
           abi: ERC20_ABI,
           functionName: "approve",
           args: [BOUNTY_CONTRACT_ADDRESS, rewardAmount],
+          account: address as `0x${string}`,
+          chain: sepolia,
         })
       } else {
         setCurrentStep(CreateStep.CREATE)
@@ -306,33 +321,72 @@ export default function PostBounty() {
   }
 
   const createBounty = (uri: string = ipfsUri) => {
+    console.log("🚀 Starting createBounty...")
+    console.log("Form data:", formData)
+    console.log("IPFS URI:", uri)
+    console.log("Address:", address)
+    console.log("Is connected:", isConnected)
+    
+    if (!address || !isConnected) {
+      console.error("❌ Wallet not connected")
+      setError("Wallet not connected")
+      setCurrentStep(CreateStep.FORM)
+      return
+    }
+    
     const deadlineTimestamp = Math.floor(new Date(formData.deadline).getTime() / 1000)
     const rewardAmount = parseUnits(formData.totalReward, 6)
     const categoryId = Number.parseInt(formData.category)
 
-    createContract({
-      address: BOUNTY_CONTRACT_ADDRESS,
-      abi: BOUNTY_ABI,
-      functionName: "createBounty",
-      args: [formData.name, uri, categoryId, BigInt(deadlineTimestamp), rewardAmount],
+    console.log("Contract args:", {
+      name: formData.name,
+      description: formData.description,
+      category: categoryId,
+      deadline: deadlineTimestamp,
+      reward: rewardAmount.toString(),
+      address,
+      chain: sepolia.name,
     })
+
+    try {
+      createContract({
+        address: BOUNTY_CONTRACT_ADDRESS,
+        abi: BOUNTY_ABI,
+        functionName: "createBounty",
+        args: [formData.name, formData.description, categoryId, BigInt(deadlineTimestamp), rewardAmount],
+        account: address as `0x${string}`,
+        chain: sepolia,
+      })
+      console.log("✅ createContract called successfully")
+    } catch (error) {
+      console.error("❌ Error calling createContract:", error)
+      setError(`Failed to create bounty: ${error instanceof Error ? error.message : 'Unknown error'}`)
+      setCurrentStep(CreateStep.FORM)
+    }
   }
 
   // Handle approval success
   useEffect(() => {
     if (isApproveSuccess && currentStep === CreateStep.APPROVE) {
+      console.log("✅ Approval successful, moving to CREATE step")
       setCurrentStep(CreateStep.CREATE)
       refetchAllowance()
-      createBounty()
+      // Small delay to ensure state updates
+      setTimeout(() => {
+        console.log("Calling createBounty after approval...")
+        createBounty()
+      }, 500)
     }
   }, [isApproveSuccess, currentStep])
 
   // Handle create success
   useEffect(() => {
+    console.log("Create status:", { isCreateSuccess, currentStep, createHash })
     if (isCreateSuccess && currentStep === CreateStep.CREATE) {
+      console.log("✅ Bounty created successfully!")
       setCurrentStep(CreateStep.SUCCESS)
     }
-  }, [isCreateSuccess, currentStep])
+  }, [isCreateSuccess, currentStep, createHash])
 
   // Handle errors
   useEffect(() => {
@@ -344,6 +398,7 @@ export default function PostBounty() {
 
   useEffect(() => {
     if (createError) {
+      console.error("❌ Create error:", createError)
       setError(`Bounty creation failed: ${createError.message}`)
       setCurrentStep(CreateStep.FORM)
     }

@@ -63,7 +63,7 @@ Contract Address: 0x0caE75a45201304d6b45541BCeF12bd3ee787e28
 - **Solidity 0.8.19** - Smart contract development
 - **OpenZeppelin** - Secure contract libraries
 - **USDT Integration** - Stablecoin payments
-- **Binance Smart Chain Testnet** - Decentralized execution
+- **Ethereum Sepolia** - Testnet deployment
 
 ### Development Tools
 - **ESLint** - Code quality and consistency
@@ -74,11 +74,12 @@ Contract Address: 0x0caE75a45201304d6b45541BCeF12bd3ee787e28
 
 ### 🌐 Main Network
 
-- **Chain**: U2U Solaris Mainnet
-- **RPC URL**: [`https://rpc-mainnet.u2u.xyz`](https://rpc-mainnet.u2u.xyz)
-- **Chain ID**: `39`
-- **Currency**: U2U
-- **Explorer**: [https://u2uscan.xyz](https://u2uscan.xyz)
+- **Chain**: Ethereum Sepolia Testnet
+- **RPC URL**: [`https://rpc.sepolia.org`](https://rpc.sepolia.org)
+- **Chain ID**: `11155111`
+- **Currency**: ETH
+- **Explorer**: [https://sepolia.etherscan.io](https://sepolia.etherscan.io)
+- **Deployed**: December 22, 2025
 
 
 ## 🚀 Getting Started
@@ -153,21 +154,21 @@ Contract Address: 0x0caE75a45201304d6b45541BCeF12bd3ee787e28
 ## 🔧 Smart Contracts
 
 ### Bounty Contract (`Bounty.sol`)
-- Contract Address: [0x637224F6460A5Bc3FE0B873e4361288ba7Ac3883](https://u2uscan.xyz/address/0x637224F6460A5Bc3FE0B873e4361288ba7Ac3883)
+- Contract Address: [0x69be51D117e4f917BbBB2b19d30b77eAC48F8b21](https://sepolia.etherscan.io/address/0x69be51D117e4f917BbBB2b19d30b77eAC48F8b21)
 - Manages competitive bounty competitions
 - Handles USDT payments and prize distribution
 - Implements deadline enforcement and penalty systems
 - Supports multiple categories and submission tracking
 
 ### Freelance Contract (`Freelance.sol`)
-- Contract Address: [0x0aa14c4F895EBe9905FcFC90cCEc70a991C12788](https://u2uscan.xyz/address/0x0aa14c4F895EBe9905FcFC90cCEc70a991C12788)
+- Contract Address: [0x15c6425E64659D3bf9d1A7131E3b921953E1e62f](https://sepolia.etherscan.io/address/0x15c6425E64659D3bf9d1A7131E3b921953E1e62f)
 - Escrow system for freelance projects
 - Staking mechanism for freelancer commitment
 - Proposal management and selection process
 - Automated deadline handling and fund release
 
 ### USDT Token (Mock)
-- Token Address: [0x6aE731EbaC64f1E9c6A721eA2775028762830CF7](https://u2uscan.xyz/address/0x6aE731EbaC64f1E9c6A721eA2775028762830CF7)
+- Token Address: [0x52708D2EbB14ADc9df57e02aCAbDC258945daeE2](https://sepolia.etherscan.io/address/0x52708D2EbB14ADc9df57e02aCAbDC258945daeE2)
 - ERC20 stablecoin used for all payments on the platform
   
 

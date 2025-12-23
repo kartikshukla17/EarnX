@@ -1,6 +1,8 @@
-export const BOUNTY_CONTRACT_ADDRESS = "0x637224F6460A5Bc3FE0B873e4361288ba7Ac3883" as const
-export const USDT_TOKEN_ADDRESS = "0x6aE731EbaC64f1E9c6A721eA2775028762830CF7" as const
-export const FREELANCE_CONTRACT_ADDRESS = "0x0aa14c4F895EBe9905FcFC90cCEc70a991C12788" as const
+// Ethereum Sepolia Testnet Contract Addresses
+// Deployed: December 22, 2025
+export const BOUNTY_CONTRACT_ADDRESS = "0x69be51D117e4f917BbBB2b19d30b77eAC48F8b21" as const
+export const USDT_TOKEN_ADDRESS = "0x52708D2EbB14ADc9df57e02aCAbDC258945daeE2" as const
+export const FREELANCE_CONTRACT_ADDRESS = "0x15c6425E64659D3bf9d1A7131E3b921953E1e62f" as const
 export const BOUNTY_ABI = [
 	{
 		"inputs": [
@@ -1158,7 +1160,7 @@ export const ERC20_ABI = [
 	}
 ] as const
 
-export const FREELANCE_ABI =  [
+export const FREELANCE_ABI = [
 	{
 		"inputs": [
 			{
